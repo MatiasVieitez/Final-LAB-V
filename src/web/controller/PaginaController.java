@@ -76,6 +76,25 @@ public class PaginaController {
 		return mv;
 	}
 	
+	@RequestMapping("/clientes.html")
+	public ModelAndView listadoClientes() {		
+		ModelAndView mv = new ModelAndView();
+		
+			mv.setViewName("clientes");
+
+		return mv;
+	}
+	
+	
+	@RequestMapping("/altaCliente.html")
+	public ModelAndView altaCliente() {		
+		ModelAndView mv = new ModelAndView();
+		
+			mv.setViewName("altaCliente");
+
+		return mv;
+	}
+	
 	@RequestMapping("cerrarSesion.html")
 	public ModelAndView CerrarSesion(SessionStatus status) {
 		status.setComplete();
