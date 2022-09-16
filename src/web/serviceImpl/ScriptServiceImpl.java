@@ -16,11 +16,6 @@ public class ScriptServiceImpl {
 	
 	public void script() throws Exception {
 		
-//		ArrayList<Libro> libros = (ArrayList)iDaoLibro.listarLibros();
-//
-//		if (libros != null && libros.size() > 0) 
-//			System.out.print("Datos existentes");
-//		else
 			GenerarDatos();
 	}
 	

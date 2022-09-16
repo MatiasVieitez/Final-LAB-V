@@ -14,6 +14,7 @@ import org.springframework.stereotype.Component;
 @Table(name="Usuario")
 public class UsuarioModel {
 	
+@SuppressWarnings("unused")
 private static final long serialVersionUID = 1L;
 	
 	@Id

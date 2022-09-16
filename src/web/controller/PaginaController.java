@@ -31,6 +31,8 @@ public class PaginaController {
 		return new UsuarioModel();
 	}
 	
+	// ---------------------------------------- DISPATCHERS DE LOGIN Y ERRORES ------------------------------------------------
+	
 	@RequestMapping("index.html")
 	public String Login(SessionStatus status, ModelMap map, @ModelAttribute("usuario") UsuarioModel u,String username, String password)	{		
 		String redirect = "";
@@ -61,6 +63,18 @@ public class PaginaController {
 		return mv;
 	}
 	
+	@RequestMapping("cerrarSesion.html")
+	public ModelAndView CerrarSesion(SessionStatus status) {
+		status.setComplete();
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("index");
+		return mv;
+	}
+	
+	// ----------------------------- FIN DISPATCHERS DE LOGIN Y ERRORES -------------------------------
+	
+	// ----------------------------- DISPATCHERS BIBLIOTECA -------------------------------------------
+	
 	@RequestMapping("/biblioteca.html")
 	public ModelAndView ListadoBiblioteca() {		
 		ModelAndView mv = new ModelAndView();
@@ -76,6 +90,12 @@ public class PaginaController {
 		return mv;
 	}
 	
+	// ----------------------------- FIN DISPATCHERS BIBLIOTECA -------------------------------------------
+	
+	
+	
+	// ----------------------------- DISPATCHERS CLIENTE -------------------------------------------
+	
 	@RequestMapping("/clientes.html")
 	public ModelAndView listadoClientes() {		
 		ModelAndView mv = new ModelAndView();
@@ -84,7 +104,6 @@ public class PaginaController {
 
 		return mv;
 	}
-	
 	
 	@RequestMapping("/altaCliente.html")
 	public ModelAndView altaCliente() {		
@@ -95,11 +114,9 @@ public class PaginaController {
 		return mv;
 	}
 	
-	@RequestMapping("cerrarSesion.html")
-	public ModelAndView CerrarSesion(SessionStatus status) {
-		status.setComplete();
-		ModelAndView mv = new ModelAndView();
-		mv.setViewName("index");
-		return mv;
-	}
+	// ----------------------------- FIN DISPATCHERS CLIENTE -------------------------------------------
+	
+	
+	
+	
 }

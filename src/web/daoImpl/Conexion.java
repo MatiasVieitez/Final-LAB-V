@@ -53,7 +53,8 @@ public class Conexion {
 	}
 
 	public List<Object[]> ObtenerListaPorQuery(String query){
-	 	   List<Object[]> list = (List<Object[]>)session.createSQLQuery(query).list();
+	 	   @SuppressWarnings("unchecked")
+		List<Object[]> list = (List<Object[]>)session.createSQLQuery(query).list();
 	 	   return list;
 	}
 	
