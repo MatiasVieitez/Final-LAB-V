@@ -116,7 +116,27 @@ public class PaginaController {
 	
 	// ----------------------------- FIN DISPATCHERS CLIENTE -------------------------------------------
 	
+	// ----------------------------- DISPATCHERS CLIENTE -------------------------------------------
 	
+		@RequestMapping("/prestamos.html")
+		public ModelAndView listadoPrestamos() {		
+			ModelAndView mv = new ModelAndView();
+			
+				mv.setViewName("prestamos");
+
+			return mv;
+		}
+		
+		@RequestMapping("/altaPrestamo.html")
+		public ModelAndView altaPrestamo() {		
+			ModelAndView mv = new ModelAndView();
+			
+				mv.setViewName("altaPrestamo");
+
+			return mv;
+		}
+		
+		// ----------------------------- FIN DISPATCHERS CLIENTE -------------------------------------------
 	
 	
 }
