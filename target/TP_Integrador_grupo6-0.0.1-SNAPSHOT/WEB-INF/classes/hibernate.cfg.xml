@@ -9,8 +9,16 @@
      	 <property name="hibernate.connection.username">root</property>
         <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/TP_Integrador?createDatabaseIfNotExist=true&amp;useUnicode=true&amp;useJDBCCompliantTimezoneShift=true&amp;useLegacyDatetimeCode=false&amp;serverTimezone=UTC</property>
         <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+        
         <property name="hbm2ddl.auto">update</property>
         <property name="show_sql">true</property>
         <mapping class="web.model.UsuarioModel"/>
+        <!-- <mapping class="web.model.PrestamoModel"/> 
+        <mapping class="web.model.NacionalidadModel"/> 
+        <mapping class="web.model.LibroModel"/>
+        <mapping class="web.model.GeneroModel"/>
+        <mapping class="web.model.ClienteModel"/>
+        <mapping class="web.model.BibliotecaModel"/>
+        <mapping class="web.model.AutorModel"/> -->
     </session-factory>
 </hibernate-configuration>
