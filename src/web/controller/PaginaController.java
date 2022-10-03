@@ -1,5 +1,7 @@
 package web.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
@@ -10,7 +12,9 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
 
+import web.model.Nacionalidad;
 import web.model.UsuarioModel;
+import web.serviceImpl.FuncionesSeparadasServiceImpl;
 import web.serviceImpl.ScriptServiceImpl;
 import web.serviceImpl.UsuarioServiceImpl;
 
@@ -25,6 +29,10 @@ public class PaginaController {
 	@Autowired
 	@Qualifier("Script")
 	private ScriptServiceImpl scriptServiceImpl;
+	
+	@Autowired
+	@Qualifier("FuncionesService")
+	private FuncionesSeparadasServiceImpl funciones;
 	
 	@ModelAttribute("usuario")
 	public UsuarioModel getUsername() {
@@ -109,7 +117,15 @@ public class PaginaController {
 	public ModelAndView altaCliente() {		
 		ModelAndView mv = new ModelAndView();
 		
+		try {
+			List<Nacionalidad> nacionalidades = funciones.ListarNacionalidades();
+			mv.addObject("nacionalidades",nacionalidades);
 			mv.setViewName("altaCliente");
+		}
+		catch(Exception e) {
+			e.getCause();
+		}
+			
 
 		return mv;
 	}

@@ -13,6 +13,7 @@
         <property name="hbm2ddl.auto">update</property>
         <property name="show_sql">true</property>
         <mapping class="web.model.UsuarioModel"/>
+        <mapping class="web.model.Nacionalidad"/>
         <!-- <mapping class="web.model.PrestamoModel"/> 
         <mapping class="web.model.NacionalidadModel"/> 
         <mapping class="web.model.LibroModel"/>
