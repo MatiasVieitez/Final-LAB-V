@@ -15,7 +15,7 @@
         <a class="nav-link" href="biblioteca.html">Biblioteca</a>
       </li>
        <li class="nav-item">
-        <a class="nav-link" href="listadoPrestamos.html">Prestamos</a>
+        <a class="nav-link" href="prestamos.html">Prestamos</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="clientes.html">Clientes</a>

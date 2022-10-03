@@ -48,7 +48,7 @@
 							sesion</button>
 						<br> <br>
 						<p>
-							<b>Alumnos</b> : Matias Vieitez
+							<b>Alumnos</b> : Matias Vieitez, Adriel Lopez
 						</p>
 					</form>
 				</div>
