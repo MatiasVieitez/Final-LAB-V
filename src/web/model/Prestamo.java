@@ -38,14 +38,17 @@ public class Prestamo {
 	@JoinColumn(name = ("id_cliente"))
 	private Cliente cliente;
 	
-	/*public Prestamo(int id, Biblioteca biblioteca, Date fechaPrestamo, int cantDias, Cliente cliente) {
+	public Prestamo() {
+	}
+	
+	public Prestamo(int id, Biblioteca biblioteca, Date fechaPrestamo, int cantDias, Cliente cliente) {
 		super();
 		this.id = id;
 		this.biblioteca = biblioteca;
 		this.fechaPrestamo = fechaPrestamo;
 		CantDias = cantDias;
 		this.cliente = cliente;
-	}*/
+	}
 
 	public int getId() {
 		return id;
@@ -85,6 +88,15 @@ public class Prestamo {
 
 	public void setCliente(Cliente cliente) {
 		this.cliente = cliente;
+	}
+
+	public Date getFechaNPrestamo() {
+		return fechaPrestamo;
+	}
+	
+	public void setFechaPrestamo(java.util.Date date) {
+		this.fechaPrestamo = (Date) date;
+		
 	}
 	
 	
