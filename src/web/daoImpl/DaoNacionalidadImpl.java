@@ -2,18 +2,25 @@ package web.daoImpl;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+
 import web.dao.DaoNacionalidad;
 import web.model.Nacionalidad;
 
+@Repository("DaoNacionalidadImpl")
 public class DaoNacionalidadImpl implements DaoNacionalidad {
 
+	@Autowired
 	private Conexion conexion;
+	private Nacionalidad nacionalidad;
 
 	@Override
 	public List<Nacionalidad> listarNacionalidades() {
 		conexion.abrirConexion();
 		@SuppressWarnings("unchecked")
-		List<Nacionalidad> listaNacionalidades= (List<Nacionalidad>)conexion.getSession().createQuery("FROM Nacionalidad n ORDER BY id_nacionalidad asc").list();
+		List<Nacionalidad> listaNacionalidades= (List<Nacionalidad>)conexion.getSession().createQuery("FROM Nacionalidad").list();
+		System.out.println("LISTA DE NACIONALIDADES cantiadad de items: " + listaNacionalidades.size());
 		conexion.cerrarSession();
 
 		return listaNacionalidades;

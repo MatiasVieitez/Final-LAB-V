@@ -42,10 +42,11 @@ public class PaginaController {
 	// ---------------------------------------- DISPATCHERS DE LOGIN Y ERRORES ------------------------------------------------
 	
 	@RequestMapping("index.html")
-	public String Login(SessionStatus status, ModelMap map, @ModelAttribute("usuario") UsuarioModel u,String username, String password)	{		
+	public String Login(SessionStatus status, ModelMap map, @ModelAttribute("usuario") UsuarioModel u,String username, String password) throws Exception	{	
+		scriptServiceImpl.script();
 		String redirect = "";
 		try {
-			scriptServiceImpl.script();
+			
 			UsuarioModel usuario = userServiceImpl.usuarioCredenciales(username, password);
 		
 			if (usuario.getId() != 0)

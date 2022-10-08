@@ -1,5 +1,7 @@
 package web.model;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -13,15 +15,14 @@ import org.springframework.stereotype.Component;
 @Component
 @Entity
 @Table(name="Nacionalidad")
-public class Nacionalidad {
+public class Nacionalidad implements Serializable {
 
-	@SuppressWarnings("unused")
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@Column(name="id_nacionalidad")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int idNacionalidad;
+	@Column(name = "id_nacionalidad")
+	private int id_nacionalidad;
 	
 	@Column(name="descripcion")
 	private String descripcion;
@@ -30,16 +31,20 @@ public class Nacionalidad {
 		
 	}
 	
-	public Nacionalidad(String desc) {
-		descripcion = desc;
+	public Nacionalidad(String ndesc) {
+		descripcion = ndesc;
 	}
 	
-	public int getIdNacionalidad() {
-		return idNacionalidad;
+	public int getId_nacionalidad() {
+		return id_nacionalidad;
 	}
 
-	public void setIdNacionalidad(int idNacionalidad) {
-		this.idNacionalidad = idNacionalidad;
+	public void setId_nacionalidad(int id_nacionalidad) {
+		this.id_nacionalidad = id_nacionalidad;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
 	}
 
 	public String getDescripcion() {
