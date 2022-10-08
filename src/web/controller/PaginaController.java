@@ -98,6 +98,16 @@ public class PaginaController {
 		return mv;
 	}
 	
+	@RequestMapping("/altaBiblioteca.html")
+	public ModelAndView altaBiblioteca() {		
+		ModelAndView mv = new ModelAndView();
+		
+			mv.setViewName("altaBiblioteca");
+
+		return mv;
+	}
+	
+	
 	// ----------------------------- FIN DISPATCHERS BIBLIOTECA -------------------------------------------
 	
 	

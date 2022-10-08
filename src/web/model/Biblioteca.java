@@ -34,13 +34,16 @@ public class Biblioteca {
 	@Column(name="estado")
 	private String estado;
 	
-	/*public Biblioteca(int id, Libro libro, Date fechaAlta, String estado) {
+	public Biblioteca() {	
+	}
+	
+	public Biblioteca(int id, Libro libro, Date fechaAlta, String estado) {
 		super();
 		this.id = id;
 		this.libro = libro;
 		this.fechaAlta = fechaAlta;
 		this.estado = estado;
-	}*/
+	}
 
 	public int getId() {
 		return id;
@@ -62,8 +65,8 @@ public class Biblioteca {
 		return fechaAlta;
 	}
 
-	public void setFechaAlta(Date fechaAlta) {
-		this.fechaAlta = fechaAlta;
+	public void setFechaAlta(java.util.Date date) {
+		this.fechaAlta = (Date) date;
 	}
 
 	public String getEstado() {
