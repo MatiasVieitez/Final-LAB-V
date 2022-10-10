@@ -16,6 +16,20 @@
 	integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ"
 	crossorigin="anonymous">
 
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <link rel="stylesheet" href="//cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" href="/css/tables.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="//cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
+
+<script type="text/javascript">
+        $(document).ready(function () {
+            $('#table').DataTable();
+        });
+    </script>
+
 <link rel="stylesheet" type="text/css" href="css/index.css" />
 
 </head>
@@ -30,70 +44,55 @@
 					<input type="button" value="Agregar Cliente" onclick="location.href = 'altaCliente.html';" class="btn btn-success"></input>
 				</div>
 				<br>
-				<form class="col-12" action="listarClienteFiltro.html"	method="Get">
-					<h3>Filtrar por:</h3>
-					<div class=" form-group row">
-						<label for="nombre" class="col-sm-2 col-form-label">Nombre:</label>
-						<div class="col-sm-7">
-							<input class="form-control"  type="text" id="nombre" name="nombre" placeholder="Ingrese nombre cliente">
-						</div>
-					</div>
-					<div class="form-group row">
-						<label for="apellido" class="col-sm-2 col-form-label">Apellido:</label>
-						<div class="col-sm-7">
-							<input type="text" class="form-control" id="apellido" name="apellido" placeholder="Ingrese apellido cliente">
-						</div>
-					</div>
-					<div class="form-group row">
-						<label for="nacionalidad" class="col-sm-2 col-form-label">Nacionalidad:</label>
-						<div class="col-sm-7">
-							<input type="text" class="form-control" id="nacionalidad" name="nacionalidad" placeholder="Ingrese nacionalidad cliente">
-						</div>
-					</div>
-					<div class="form-group row">
-						<div class="col-sm-7">
-							<input class="col-sm-2 col-form-label" type="submit" value="Filtrar">
-						</div>
-					</div>
-				</form>
-				<div class="col-12">
-					<table class="table table-bordered table-hover table-sm">
+				<input class="form-control" id="myInput" type="text" placeholder="Search..">
+  <br>
+				<div class="table-responsive">
+					<table class="table table-bordered table-hover table-sm" id="MyTable" >
+                        <thead>
 						<tr>
-								<td>ID</td>
-								<td>DNI</td>
-								<td>Nombre</td>
-								<td>Apellido</td>
-								<td>Sexo</td>
-								<td>Nacionalidad</td>
-								<td>Email</td>
-								<td>Direccion</td>
-								<td>Localidad</td>
-								<td>Telefono</td>
-								<td>Fecha de Nacimiento</td>
-								<td>Acciones</td>
+								<th>ID</th>
+								<th>DNI</th>
+								<th>Nombre</th>
+								<th>Apellido</th>
+								<th>Sexo</th>
+								<th>Nacionalidad</th>
+								<th>Email</th>
+								<th>Direccion</th>
+								<th>Localidad</th>
+								<th>Telefono</th>
+								<th>Fecha de Nacimiento</th>
+								<th>Acciones</th>
 							</tr>
-							<c:forEach var="obj" items="${clientes}">
+							</thead>
+							<c:forEach var="obj" items="${clientesList}">
+							<tbody id="myTable">
 								<tr>
-									<td>${obj[0]}</td>
-									<td>${obj[1]}</td>
-									<td>${obj[2]}</td>
-									<td>${obj[3]}</td>
-									<td>${obj[4]}</td>
-									<td>${obj[5]}</td>
-									<td>${obj[6]}</td>
-									<td>${obj[7]}</td>
-									<td>${obj[8]}</td>
-									<td>${obj[9]}</td>
-									<td>${obj[10]}</td>
+								 <form action="modificarCliente.html" method="post">
+								 	
+									<td>${obj.getId()} <input  type="text" hidden name="id" value="${obj.getId()}" > </td>
+									<td>${obj.getDni()}<input  type="text" hidden name="dni" value="${obj.getDni()}" ></td>
+									<td>${obj.getNombre()}<input  type="text" hidden name="nombre" value="${obj.getNombre()}" ></td>
+									<td>${obj.getApellido()}<input  type="text" hidden name="apellido" value="${obj.getApellido()}" ></td>
+									<td>${obj.getSexo()}<input  type="text" hidden name="sexo" value="${obj.getSexo()}" ></td>
+									<td >${obj.getNacionalidad().getDescripcion()}<input  type="text" hidden name="sexo" value="${obj.getNacionalidad().getId_nacionalidad()}" ></td>
+									<td><input  type="text" name="correo" value="${obj.getEmail()}" ></td>
+									<td><input type="text" name="direccion" value="${obj.getDireccion()}" ></td>
+									<td><input type="text" name="localidad" value="${obj.getLocalidad()}" ></td>
+									<td><input type="text" name="telefono" value="${obj.getTelefono()}" ></td>
+									<td>${obj.getFechaNacimiento()}<input  type="text" hidden name="fNacimiento" value="${obj.getFechaNacimiento()}" ></td>
 									<td>
-										<form method="GET">                   
-											<input type="button" value="Eliminar" data-id-cliente="${obj[0]}" class="btn btn-danger eliminarCliente"></input>
-											<input type="button" value="Modificar"	onclick="location.href = 'paginaModificarCliente.html?id=${obj[0]}';"	class="btn btn-primary"></input>
-										</form>									
+											<input type="button" value="Eliminar" data-id-cliente="${obj.getId()}" class="btn btn-danger eliminarCliente"></input>							
 	                              	</td>
+	                              	<td><input type="submit" value="Modificar"  class="btn btn-primary"></input></td>
+	                              	
+                              	</form>
 								</tr>
+								</tbody>
 							</c:forEach>
 						</table>
+				
+				
+							
 						</div>
 					</div>
 				</div>
@@ -136,7 +135,7 @@
 					</div>
 					<div class="modal-body">
 						<div class=" form-group row">
-							<div class="col-lg-8 offset-2">�Esta Seguro que desea eliminar este cliente?</div>
+							<div class="col-lg-8 offset-2">Quiere confirmar esta operacion ? </div>
 						</div>
 					</div>
 					<div class="modal-footer">
@@ -147,7 +146,6 @@
 				</div>
 			</div>
 	</div>
-
 	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
 		integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
 		crossorigin="anonymous"></script>
@@ -173,10 +171,21 @@
 					    location.href = 'eliminarCliente.html?id=' + cliente;
 					    
 					});
-					
-
 				});
 			});					
 		</script>		
+		
+		
+		<script>
+$(document).ready(function(){
+  $("#myInput").on("keyup", function() {
+    var value = $(this).val().toLowerCase();
+    $("#myTable tr").filter(function() {
+      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+    });
+  });
+});
+</script>
+				
 </body>
 </html>

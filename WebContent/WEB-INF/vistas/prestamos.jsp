@@ -40,10 +40,10 @@
 						</div>
 					</div>
 					<div class="form-group row">
-						<label for="titulo" class="col-sm-2 col-form-label">Titulo:</label>
+						<label for="biblioteca" class="col-sm-2 col-form-label">Biblioteca:</label>
 						<div class="col-sm-7">
-							<input type="text" class="form-control" id="titulo" name="titulo"
-								placeholder="Ingrese un titulo">
+							<input type="text" class="form-control" id="biblioteca" name="biblioteca"
+								placeholder="Ingrese una biblioteca">
 						</div>
 					</div>
 						<div class="form-group row">
@@ -81,8 +81,8 @@
 					<table class="table table-bordered table-hover">
 						<tr>
 							<th scope="col">ID</th>
-							<th scope="col">Cliente</th>
 							<th scope="col">Biblioteca</th>
+							<th scope="col">Cliente</th>
 							<th scope="col">Fecha Alta</th>
 							<th scope="col">Cantidad Dias</th>
 							<th scope="col">Estado</th>

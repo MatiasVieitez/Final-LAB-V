@@ -14,12 +14,11 @@
         <property name="show_sql">true</property>
         <mapping class="web.model.UsuarioModel"/>
         <mapping class="web.model.Nacionalidad"/>
-        <!-- <mapping class="web.model.PrestamoModel"/> 
-        <mapping class="web.model.NacionalidadModel"/> 
-        <mapping class="web.model.LibroModel"/>
-        <mapping class="web.model.GeneroModel"/>
-        <mapping class="web.model.ClienteModel"/>
-        <mapping class="web.model.BibliotecaModel"/>
-        <mapping class="web.model.AutorModel"/> -->
+        <mapping class="web.model.Prestamo"/>
+        <mapping class="web.model.Biblioteca"/>
+        <mapping class="web.model.Cliente"/>
+        <mapping class="web.model.Libro"/>
+        <mapping class="web.model.Genero"/>
+        <mapping class="web.model.Autor"/>
     </session-factory>
 </hibernate-configuration>

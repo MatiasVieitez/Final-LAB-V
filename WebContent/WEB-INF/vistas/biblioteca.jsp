@@ -27,13 +27,13 @@
 			<div class="card-body">
 				<div class="col-12">
 					<h1>Biblioteca</h1>
-					<input type="button" value="Agregar Libro" onclick="location.href = 'nuevaBiblioteca.html';"	class="btn btn-primary"></input>
+					<input type="button" value="Agregar Biblioteca" onclick="location.href = 'altaBiblioteca.html';"	class="btn btn-primary"></input>
 				</div>
 				<br>
 				<form class="col-12" action="listarBibliotecaFiltro.html"	method="Get">
 					<h3>Filtrar por:</h3>
 					<div class=" form-group row">
-						<label for="isbn" class="col-sm-2 col-form-label">ISBN:</label>
+						<label for="isbn" class="col-sm-2 col-form-label">ID:</label>
 						<div class="col-sm-7">
 							<input class="form-control" min="1" type="number" id="isbn"
 								name="isbn">
@@ -73,8 +73,7 @@
 				<div class="col-12">
 					<table class="table table-bordered table-hover">
 						<tr>
-							<th scope="col">Codigo</th>
-							<th scope="col">ISBN</th>
+							<th scope="col">Biblioteca</th>
 							<th scope="col">Titulo</th>
 							<th scope="col">Fecha Alta</th>
 							<th scope="col">Estado</th>
@@ -82,29 +81,28 @@
 						</tr>
 						<c:forEach var="obj" items="${bibliotecas}">
 							<tr>
-								<td>${obj[0]}</td>
-								<td>${obj[1]}</td>
-								<td>${obj[2]}</td>
-								<td>${obj[3]}</td>
-								<td>${obj[4]}</td>
+								<td>${obj.getId()}</td>
+								<td>${obj.getLibro().getTitulo()}</td>
+								<td>${obj.getFechaAlta()}</td>
+								<td>${obj.getEstado()}</td>
 								<td>
 									<form method="GET">
 										<input type="button" value="Eliminar"
-											data-id-biblioteca="${obj[0]}"											
+											data-id-biblioteca="${obj.getId()}"											
 											class="btn btn-danger eliminarbiblioteca"></input> 
 											<input type="button"
 											value="Modificar"
-											onclick="location.href = 'paginaModificarBiblioteca.html?id=${obj[0]}';"
+											onclick="location.href = 'paginaModificarBiblioteca.html?id=${obj.getId()}';"
 											class="btn btn-primary"></input>
 										<c:choose>
-											<c:when test="${obj[4] == 'Prestado'}">
+											<c:when test="${obj.getEstado() == 'Prestado'}">
 												<input type="button" value="Info. Prestamo"
-													onclick="location.href = 'listadoPrestamos.html?isbn=${obj[1]}';"
+													onclick="location.href = 'listadoPrestamos.html?isbn=${obj.getLibro().getTitulo()}';"
 													class="btn btn-primary"></input>
 											</c:when>
 											<c:otherwise>
 												<input type="button" value="Nuevo Prestamo"
-													onclick="location.href = 'obtenerBibliotecaDesdeLista.html?idBiblioteca=${obj[0]}';"
+													onclick="location.href = 'obtenerBibliotecaDesdeLista.html?idBiblioteca=${obj.getId()}';"
 													class="btn btn-primary"></input>
 											</c:otherwise>
 										</c:choose>

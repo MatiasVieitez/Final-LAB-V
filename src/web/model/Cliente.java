@@ -56,7 +56,7 @@ public final class Cliente {
 	private String telefono;
 	
 	@Column(name="fecha_nacimiento")
-	private Date fechaNacimiento;
+	private String fechaNacimiento;
 
 	public int getId() {
 		return id;
@@ -138,12 +138,12 @@ public final class Cliente {
 		this.telefono = telefono;
 	}
 
-	public Date getFechaNacimiento() {
+	public String getFechaNacimiento() {
 		return fechaNacimiento;
 	}
 
-	public void setFechaNacimiento(java.util.Date date) {
-		this.fechaNacimiento = (Date) date;
+	public void setFechaNacimiento(String fecha) {
+		this.fechaNacimiento =  fecha;
 	}
 
 	

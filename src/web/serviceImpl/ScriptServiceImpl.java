@@ -10,26 +10,39 @@ import web.dao.DaoNacionalidad;
 import web.dao.DaoUsuario;
 import web.model.Nacionalidad;
 import web.model.UsuarioModel;
+import web.service.NacionalidadService;
 
 @Service("Script")
 public class ScriptServiceImpl {
 
 	@Autowired
 	DaoUsuario daoUsuario;
+	
+	@Autowired
 	UsuarioModel usuario;
+	
+	@Autowired
+	Nacionalidad nacionalidad;
+	
+	@Autowired
+	NacionalidadServiceImpl nacionalidadService;
+	
+	@Autowired
 	DaoNacionalidad daoNacionalidad;
+	
+	//private boolean existingData = false;
 	
 	
 	public void script() throws Exception {
 		
-			GenerarDatos();
+	  GenerarDatos();
 	}
 	
 	
 	private void GenerarDatos() {
 		
-		//cargarUsuarios();
-		//GenerarNacionalidades();
+		cargarUsuarios();
+		GenerarNacionalidades();
 		
 	}
 	
@@ -39,37 +52,45 @@ public class ScriptServiceImpl {
 		daoUsuario.agregarUsuario(usuario);
 	}
 	
-	List<Nacionalidad> GenerarNacionalidades(){
-		ArrayList<Nacionalidad> aux = new ArrayList<Nacionalidad>();
-		Nacionalidad nacionalidad = new Nacionalidad("Argentina");
-		aux.add(nacionalidad);
-		daoNacionalidad.agregarNacionalidad(nacionalidad);
-
-//		nacionalidad = new Nacionalidad("Venezuela");
-//		aux.add(nacionalidad);
-//
-//		nacionalidad = new Nacionalidad("Bolivia");
-//		aux.add(nacionalidad);
-//
-//		nacionalidad = new Nacionalidad("Chile");
-//		aux.add(nacionalidad);
-//
-//		nacionalidad = new Nacionalidad("Uruguay");
-//		aux.add(nacionalidad);
-//
-//		nacionalidad = new Nacionalidad("Brasil");
-//		aux.add(nacionalidad);
-
+	private void GenerarNacionalidades(){
 		
-//         System.out.println("antes del for: " + nacionalidad);
-//		for (Nacionalidad n : aux) {
-//			System.out.println("dentro del for antes de guardar: " + n);
-//			daoNacionalidad.agregarNacionalidad(n);
-//			System.out.println("dentro del for luego de guardar: " + n);
-//			
-//		}
+		try {
+			nacionalidad = new Nacionalidad("Argentina");
+			daoNacionalidad.agregarNacionalidad(nacionalidad);
 			
-
-		return aux;
+			nacionalidad = new Nacionalidad("Uruguay");
+			daoNacionalidad.agregarNacionalidad(nacionalidad);
+			
+			nacionalidad = new Nacionalidad("Brasil");
+			daoNacionalidad.agregarNacionalidad(nacionalidad);
+			
+			nacionalidad = new Nacionalidad("Paraguay");
+			daoNacionalidad.agregarNacionalidad(nacionalidad);
+			
+			nacionalidad = new Nacionalidad("Chile");
+			daoNacionalidad.agregarNacionalidad(nacionalidad);
+			
+			nacionalidad = new Nacionalidad("Peru");
+			daoNacionalidad.agregarNacionalidad(nacionalidad);
+			
+			nacionalidad = new Nacionalidad("Venezuela");
+			daoNacionalidad.agregarNacionalidad(nacionalidad);
+			
+			nacionalidad = new Nacionalidad("Colombia");
+			daoNacionalidad.agregarNacionalidad(nacionalidad);
+			
+			nacionalidad = new Nacionalidad("Ecuador");
+			daoNacionalidad.agregarNacionalidad(nacionalidad);
+			
+			nacionalidad = new Nacionalidad("Bolivia");
+			daoNacionalidad.agregarNacionalidad(nacionalidad);
+			
+		}
+		catch(Exception e) {
+			e.getCause();
+			e.printStackTrace();
+		}
+		
+		
 	}
 }
