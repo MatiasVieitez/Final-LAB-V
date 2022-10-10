@@ -1,5 +1,6 @@
 package web.daoImpl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -142,5 +143,18 @@ public class DaoClienteImpl implements DaoCliente {
 		return cliente;
 		
 	}
+	
+	@Override
+    public boolean chequearDuplicado(String dni, String email) {
+        conexion.abrirConexion();
+        String query = "FROM Cliente where Dni = '" + dni + "' or Email = '" + email + "'";
+        @SuppressWarnings("unchecked")
+        ArrayList<Cliente> lista = (ArrayList<Cliente>)conexion.getSession().createQuery(query).list();
+        conexion.cerrarSession();
+        if(lista.size() == 0)
+            return false;
+        return true;
+    }
+	
 
 }

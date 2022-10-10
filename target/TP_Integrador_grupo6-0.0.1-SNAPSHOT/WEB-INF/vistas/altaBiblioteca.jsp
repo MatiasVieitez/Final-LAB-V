@@ -30,7 +30,7 @@
 					<input type="button" value="Volver" onclick="location.href = 'biblioteca.html';" class="btn btn-success"></input>
 				</div>
 				<br>
-				<form class="col-12" action="listarClienteFiltro.html"	method="Get">
+				<form class="col-12" action="addBiblioteca.html"	method="Get">
 					<h3>Biblioteca</h3>
 					
 					<div class=" form-group row">
@@ -48,17 +48,14 @@
 					</div>
 					
 					<div class=" form-group row">
-					
-						<label for="cliente" class="col-sm-2 col-form-label">Libro :</label>
+						<label for="libros" class="col-sm-2 col-form-label">Libro :</label>
 							<div class="col-sm-7">
-								<select name="cliente" id="cliente">
-									<option value="">Las 100 aventuras</option>
-									<option value="Disponible">otro libro promedio</option>
-									<option value="Prestado">increible que lo publicran</option>
-									<option value="Prestado">ingrese nombre</option>
-								</select>
-							</div>
-						
+								<select name="libros" id="libros">
+									<c:forEach items="${libroList}" var="item">
+                        			<option value="${item.getId()}">${item.getTitulo()}</option>
+                   				 </c:forEach>
+							</select>
+							</div>	
 					</div>
 					
 					<div class="form-group row">

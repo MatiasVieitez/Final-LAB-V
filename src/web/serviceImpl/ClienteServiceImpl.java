@@ -112,4 +112,11 @@ public class ClienteServiceImpl implements ClienteService {
 		return daoCliente.obtenerClienteByID(id);
 	}
 
+    @Override
+    public boolean chequearDuplicado(String dni, String email) {
+       return daoCliente.chequearDuplicado(dni, email);
+    }
+	
+	
+
 }

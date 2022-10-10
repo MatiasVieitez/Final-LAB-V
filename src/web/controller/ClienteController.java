@@ -34,22 +34,27 @@ public class ClienteController {
 	public String agregarCliente(String dni, String nombre, String apellido, String sexo, String nacionalidad,
 	String fNacimiento, String localidad, String direccion, String correo, String telefono) {
 		 ModelAndView mv = new ModelAndView();
-		try {
-			boolean estado = clienteService.agregarCliente(dni, nombre, apellido, sexo, Integer.parseInt(nacionalidad), fNacimiento, localidad, direccion, correo,telefono);
-			
-			if(estado) {
-				mv.addObject("msg","cliente agregado con exito");
-				return "redirect:/clientes.html";
-			}
-				
+		 if (clienteService.chequearDuplicado(dni, correo)) {
+	            mv.addObject("msg", "El cliente ya existe");
+	        }else {
+	            try {
+	                boolean estado = clienteService.agregarCliente(dni, nombre, apellido, sexo, Integer.parseInt(nacionalidad), fNacimiento, localidad, direccion, correo,telefono);
+	                
+	                if(estado) {
+	                    mv.addObject("msg","cliente agregado con exito");
+	                    return "redirect:/clientes.html";
+	                }
+	                    
+	            
+	                else
+	                    return "Algo salio mal...";
+	            } catch (Exception e) {
+	                e.getCause();
+	                return "Exception";
+	            }
+	        }
 		
-			else
-				return "Algo salio mal...";
-		} catch (Exception e) {
-			e.getCause();
-			return "Exception";
-		}
-		
+		return "Exception";
 	}
 	
 	@RequestMapping("listarClienteFiltro.html")

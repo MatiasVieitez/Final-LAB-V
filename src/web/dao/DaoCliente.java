@@ -12,5 +12,6 @@ public interface DaoCliente {
 	public boolean modificarCliente(Cliente cliente);
 	public boolean eliminarCliente(Cliente cliente);
 	public Cliente obtenerClienteByID(int idCliente);
+    boolean chequearDuplicado(String dni, String email);
 	
 }

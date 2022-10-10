@@ -12,4 +12,5 @@ public interface ClienteService {
 	public boolean modificarCliente(int id, int dni, String nombre, String apellido, String sexo, int nacionalidad, String fechaNacimiento, String localidad, String direccion, String email, String telefono);
 	public boolean eliminarCliente(Cliente cliente);
 	public Cliente obtenerCliente(int dni);
+    boolean chequearDuplicado(String dni, String email);
 }

@@ -62,6 +62,8 @@
                         </div>
                     </div>
                     
+                    <p class="text-primary m-5 bg-white">${msg}</p>
+                    
                     <div class="row">
                         <button type="submit" class="btn btn-primary col-md-3 offset-4 ml-center">Crear Cliente</button>
                     </div>

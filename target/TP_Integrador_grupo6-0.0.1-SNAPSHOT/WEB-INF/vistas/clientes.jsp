@@ -74,7 +74,7 @@
 									<td>${obj.getNombre()}<input  type="text" hidden name="nombre" value="${obj.getNombre()}" ></td>
 									<td>${obj.getApellido()}<input  type="text" hidden name="apellido" value="${obj.getApellido()}" ></td>
 									<td>${obj.getSexo()}<input  type="text" hidden name="sexo" value="${obj.getSexo()}" ></td>
-									<td >${obj.getNacionalidad().getDescripcion()}<input  type="text" hidden name="sexo" value="${obj.getNacionalidad().getId_nacionalidad()}" ></td>
+									<td >${obj.getNacionalidad().getDescripcion()}<input  type="text" hidden name="nacionalidad" value="${obj.getNacionalidad().getId_nacionalidad()}" ></td>
 									<td><input  type="text" name="correo" value="${obj.getEmail()}" ></td>
 									<td><input type="text" name="direccion" value="${obj.getDireccion()}" ></td>
 									<td><input type="text" name="localidad" value="${obj.getLocalidad()}" ></td>
