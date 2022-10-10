@@ -3,15 +3,24 @@ package web.serviceImpl;
 import java.text.SimpleDateFormat;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Service;
+
 import web.dao.DaoBiblioteca;
 import web.model.Biblioteca;
 import web.service.BibliotecaService;
 import web.service.FuncionesSeparadasService;
 
+@Service("BibliotecaServiceImpl")
 public class BibliotecaServiceImpl implements BibliotecaService{
 	
+	@Autowired
 	private DaoBiblioteca daoBiblioteca;
+	@Autowired
 	private Biblioteca biblioteca;
+	@Autowired
+	@Qualifier("FuncionesService")
 	private FuncionesSeparadasService funciones;
 	
 	@Override
@@ -27,7 +36,7 @@ public class BibliotecaServiceImpl implements BibliotecaService{
 			int libroInteger = Integer.parseInt(libro);
 			
 			biblioteca.setLibro(funciones.obtenerLibro(libroInteger));
-			biblioteca.setFechaAlta(new SimpleDateFormat("yyyy-MM-dd").parse(fechaAlta));
+			biblioteca.setFechaAlta((fechaAlta));
 			biblioteca.setEstado(estado);
 
 			return daoBiblioteca.agregarBiblioteca(biblioteca);
@@ -47,7 +56,7 @@ public class BibliotecaServiceImpl implements BibliotecaService{
 			
 			biblioteca.setId(id);
 			biblioteca.setLibro(funciones.obtenerLibro(libroInteger));
-			biblioteca.setFechaAlta(new SimpleDateFormat("yyyy-MM-dd").parse(fechaAlta));
+			biblioteca.setFechaAlta((fechaAlta));
 			biblioteca.setEstado(estado);
 	
 			boolean status = daoBiblioteca.modificarBiblioteca(biblioteca);
@@ -67,6 +76,11 @@ public class BibliotecaServiceImpl implements BibliotecaService{
 	@Override
 	public Biblioteca obtenerBiblioteca(int id) {
 		return daoBiblioteca.obtenerBibliotecaByID(id);
+	}
+
+	@Override
+	public List<Object[]> listarBibliotecaTabla(String libro, String estado) {
+		return daoBiblioteca.listarBibliotecaTabla( libro, estado);
 	}
 	
 	

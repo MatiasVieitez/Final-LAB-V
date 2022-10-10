@@ -32,7 +32,7 @@ public class Libro {
 	private String Titulo;
 	
 	@Column(name="fecha_lanzamiento")
-	private Date fechaLanzamiento;
+	private String fechaLanzamiento;
 	
 	@Column(name="idioma")
 	private int Idioma;
@@ -50,8 +50,10 @@ public class Libro {
 	@ManyToMany(cascade = {CascadeType.ALL})
 	@JoinTable(name = "libro_x_genero", joinColumns = {@JoinColumn(name = "id_libro")}, inverseJoinColumns = {@JoinColumn(name = "id_autor")})
 	private Set<Genero> listaGenero = new HashSet<Genero>();
+	
+	public Libro() {}
 
-	/*public Libro(int id, String titulo, Date fechaLanzamiento, int idioma, int cantPag, Autor autor, String descripcion,
+	public Libro(int id, String titulo, String fechaLanzamiento, int idioma, int cantPag, Autor autor, String descripcion,
 			Set<Genero> listaGenero) {
 		super();
 		this.id = id;
@@ -62,7 +64,7 @@ public class Libro {
 		this.autor = autor;
 		Descripcion = descripcion;
 		this.listaGenero = listaGenero;
-	}*/
+	}
 
 	public int getId() {
 		return id;
@@ -80,11 +82,11 @@ public class Libro {
 		Titulo = titulo;
 	}
 
-	public Date getFechaLanzamiento() {
+	public String getFechaLanzamiento() {
 		return fechaLanzamiento;
 	}
 
-	public void setFechaLanzamiento(Date fechaLanzamiento) {
+	public void setFechaLanzamiento(String fechaLanzamiento) {
 		this.fechaLanzamiento = fechaLanzamiento;
 	}
 

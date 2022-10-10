@@ -41,8 +41,8 @@ public class ScriptServiceImpl {
 	
 	private void GenerarDatos() {
 		
-		//cargarUsuarios();
-		//GenerarNacionalidades();
+		cargarUsuarios();
+		GenerarNacionalidades();
 		
 	}
 	
