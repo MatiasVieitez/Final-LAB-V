@@ -16,10 +16,12 @@ import org.springframework.web.servlet.ModelAndView;
 
 import web.model.Biblioteca;
 import web.model.Cliente;
+import web.model.Libro;
 import web.model.Nacionalidad;
 import web.model.UsuarioModel;
 import web.service.BibliotecaService;
 import web.service.ClienteService;
+import web.service.LibroService;
 import web.service.NacionalidadService;
 import web.serviceImpl.FuncionesSeparadasServiceImpl;
 import web.serviceImpl.ScriptServiceImpl;
@@ -41,7 +43,6 @@ public class PaginaController {
 	@Qualifier("FuncionesService")
 	private FuncionesSeparadasServiceImpl funciones;
 	
-	
 	@Autowired
 	@Qualifier("NacionalidadServiceImpl")
 	private NacionalidadService nacionalidadService;
@@ -53,6 +54,10 @@ public class PaginaController {
 	@Autowired
 	@Qualifier("BibliotecaServiceImpl")
 	private BibliotecaService bibliotecaService;
+	
+	@Autowired
+    @Qualifier("LibroServiceImpl")
+    private LibroService libroService;
 	
 	@ModelAttribute("usuario")
 	public UsuarioModel getUsername() {
@@ -122,11 +127,18 @@ public class PaginaController {
 	
 	@RequestMapping("/altaBiblioteca.html")
 	public ModelAndView altaBiblioteca() {		
-		ModelAndView mv = new ModelAndView();
-		
-			mv.setViewName("altaBiblioteca");
-
-		return mv;
+	    ModelAndView mv = new ModelAndView();
+        
+        try {
+            List<Libro> listLibro = libroService.listarLibros();
+            if (listLibro.size() > 0)
+                mv.addObject("listLibro", listLibro);
+            mv.setViewName("altaBiblioteca");
+        }
+        catch(Exception e) {
+            e.getCause();
+        }
+        return mv;
 	}
 	
 	
@@ -194,11 +206,18 @@ public class PaginaController {
 		
 		@RequestMapping("/altaPrestamo.html")
 		public ModelAndView altaPrestamo() {		
-			ModelAndView mv = new ModelAndView();
-			
-				mv.setViewName("altaPrestamo");
-
-			return mv;
+		    ModelAndView mv = new ModelAndView();
+	        
+	        try {
+	            List<Libro> listLibro = libroService.listarLibros();
+	            if (listLibro.size() > 0)
+	                mv.addObject("listLibro", listLibro);
+	            mv.setViewName("altaPrestamo");
+	        }
+	        catch(Exception e) {
+	            e.getCause();
+	        }
+	        return mv;
 		}
 		
 		// ----------------------------- FIN DISPATCHERS Prestamos -------------------------------------------

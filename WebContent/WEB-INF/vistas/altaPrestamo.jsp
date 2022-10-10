@@ -46,18 +46,15 @@
 						
 					</div>
 					
-					<div class="form-group row">
-						
-						<label for="libro" class="col-sm-2 col-form-label">Libro:</label>
-						<div class="col-sm-7">
-							<select name="libro" id="libro">
-								<option value="">Seleccione un Libro</option>
-								<option value="Disponible">Las extrañas aventuras del hombre murcielago</option>
-								<option value="Prestado">Las 100 y una noches</option>
-								<option value="Prestado">historias para morirse de miedo</option>
+					<div class=" form-group row">
+						<label for="libros" class="col-sm-2 col-form-label">Libro :</label>
+							<div class="col-sm-7">
+								<select name="libros" id="libros">
+									<c:forEach items="${listLibro}" var="item">
+                        			<option value="${item.getId()}">${item.getTitulo()}</option>
+                   				 </c:forEach>
 							</select>
-						</div>
-					
+							</div>	
 					</div>
 					
 					<div class="form-group row">
