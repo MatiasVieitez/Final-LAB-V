@@ -56,6 +56,7 @@
 						</div>
 					</div>
 				</form>
+				<h3>${msg}</h3>
 				<div class="table-responsive">
 					<table class="table table-bordered table-hover table-sm">
 						<tr>
@@ -73,24 +74,32 @@
 								<td>Acciones</td>
 							</tr>
 							<c:forEach var="obj" items="${clientesList}">
+							
 								<tr>
 								 <form action="modificarCliente.html" method="post">
 								 	
-									<td><input type="text"  name="id" value="${obj[0]}" readonly></td>
-									<td><input type="text" name="id" value="${obj[1]}" ></td>
-									<td><input type="text" name="id" value="${obj[2]}" ></td>
-									<td><input type="text" name="id" value="${obj[3]}" ></td>
-									<td><input type="text" name="id" value="${obj[4]}" ></td>
-									<td><input type="text" name="id" value="${obj[5]}" ></td>
-									<td><input type="text" name="id" value="${obj[6]}" ></td>
-									<td><input type="text" name="id" value="${obj[7]}" ></td>
-									<td><input type="text" name="id" value="${obj[8]}" ></td>
-									<td><input type="text" name="id" value="${obj[9]}" ></td>
-									<td><input type="text" name="id" value="${obj[10]}" ></td>
+									<td><input type="text"  name="id" value="${obj.getId()}" readonly></td>
+									<td><input type="text" name="dni" value="${obj.getDni()}" ></td>
+									<td><input type="text" name="nombre" value="${obj.getNombre()}" ></td>
+									<td><input type="text" name="apellido" value="${obj.getApellido()}" ></td>
+									<td><input type="text" name="sexo" value="${obj.getSexo()}" ></td>
+									<td><select required name="nacionalidad">                    			
+	                           	
+                        				<option default value="${obj.getNacionalidad().getId_nacionalidad()}">${obj.getNacionalidad().getDescripcion()}</option>
+                   						 <c:forEach items="${nacionalidadesList}" var="item">
+                       					 <option value="${item.getID()}">${item.getDescripcion()}</option>
+                   						</c:forEach>
+									</select></td>
+									<td><input type="text" name="correo" value="${obj.getEmail()}" ></td>
+									<td><input type="text" name="direccion" value="${obj.getDireccion()}" ></td>
+									<td><input type="text" name="localidad" value="${obj.getLocalidad()}" ></td>
+									<td><input type="text" name="telefono" value="${obj.getTelefono()}" ></td>
+									<td><input type="text" name="fNacimiento" value="${obj.getFechaNacimiento()}" ></td>
 									<td>
-																		
+											<input type="button" value="Eliminar" data-id-cliente="${obj[0]}" class="btn btn-danger eliminarCliente"></input>							
 	                              	</td>
 	                              	<td><input type="submit" value="Modificar"  class="btn btn-primary"></input></td>
+	                              	
                               	</form>
 								</tr>
 							</c:forEach>

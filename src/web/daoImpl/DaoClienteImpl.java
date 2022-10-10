@@ -92,9 +92,13 @@ public class DaoClienteImpl implements DaoCliente {
 		boolean status = true;
 		try {
 			conexion.IniciarTransaccion();
+			System.out.println("antes de actualizar objeto");
 			conexion.ActualizarObjeto(cliente);
+			System.out.println("despues de actualizar objeto");
 			conexion.CommitTransaccion();
 		} catch (Exception e) {
+			e.printStackTrace();
+			e.getCause();
 			conexion.RollbackearTransaccion();
 			status = false;
 		}

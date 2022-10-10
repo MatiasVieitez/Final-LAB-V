@@ -91,11 +91,12 @@ public class ClienteServiceImpl implements ClienteService {
 			cliente.setNombre(nombre);
 			cliente.setSexo(sexo);
 			cliente.setTelefono(telefono);
-			cliente.setNacionalidad(funciones.obtenerNacionalidad(nacionalidad));
+			cliente.setNacionalidad(nacionalidadService.obtenerNacionalidad(nacionalidad));
 
 			boolean status = daoCliente.modificarCliente(cliente);
 			return status;
 		} catch (Exception e) {
+			e.printStackTrace();
 			e.getCause();
 			return false;
 		}

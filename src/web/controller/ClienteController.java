@@ -23,6 +23,7 @@ public class ClienteController {
 	
 	
 	@Autowired
+	@Qualifier("ClienteServiceImpl")
 	ClienteService clienteService;
 
 	@Autowired
@@ -90,7 +91,7 @@ public class ClienteController {
 	}
 	
 	@RequestMapping("modificarCliente.html")
-	public ModelAndView modificarCliente(@ModelAttribute("cliente") Cliente cliente, String id, String dni, String nombre, String apellido, String sexo, String nacionalidad,
+	public String modificarCliente(@ModelAttribute("cliente") Cliente cliente, String id, String dni, String nombre, String apellido, String sexo, String nacionalidad,
 			String fNacimiento, String localidad, String direccion, String correo, String telefono) {
 		
 		ModelAndView mv = new ModelAndView();
@@ -108,7 +109,7 @@ public class ClienteController {
 			e.printStackTrace();
 		}
 		
-		ArrayList<Cliente> list = (ArrayList<Cliente>) clienteService.listarClientes();
+		List<Cliente> list = clienteService.listarClientes();
 		if (list.size() > 0)
 			mv.addObject("clientesList", list);
 		
@@ -116,7 +117,7 @@ public class ClienteController {
 		if (listNacionalidades.size() > 0)
 			mv.addObject("nacionalidadesList", listNacionalidades);
 		
-		return mv;
+		return "clientes";
 	}
 	
 	

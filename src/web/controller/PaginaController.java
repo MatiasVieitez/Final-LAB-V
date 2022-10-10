@@ -133,7 +133,9 @@ public class PaginaController {
 	public ModelAndView listadoClientes() {		
 		ModelAndView mv = new ModelAndView();
 		
-			mv.addObject("clientesList", clienteService.listarClienteTabla("","", ""));
+			//mv.addObject("clientesList", clienteService.listarClienteTabla("","", ""));
+		    List<Cliente> list = clienteService.listarClientes();
+		    mv.addObject("clientesList",list);
 			mv.setViewName("clientes");
 
 		return mv;
@@ -168,25 +170,7 @@ public class PaginaController {
 		return mv;
 	}
 	
-	@RequestMapping("viewModificarCliente.html")
-	public ModelAndView PaginaModificarCliente(@RequestParam(value = "id", required = false) int id) {
-		ModelAndView mv = new ModelAndView();
-		
-		try {
-			Cliente cliente = clienteService.obtenerCliente(id);
-			List<Nacionalidad> nacionalidades = nacionalidadService.listarNacionalidades();
-			mv.addObject("nacionalidades",nacionalidades);
-			mv.addObject("cliente", cliente);
-			mv.setViewName("viewModificarCliente");
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-
-		return mv;
-	}
-	
-	
-	
+ 
 	
 	// ----------------------------- FIN DISPATCHERS CLIENTE -------------------------------------------
 	
