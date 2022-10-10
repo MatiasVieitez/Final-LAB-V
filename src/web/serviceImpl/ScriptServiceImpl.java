@@ -58,6 +58,33 @@ public class ScriptServiceImpl {
 			nacionalidad = new Nacionalidad("Argentina");
 			daoNacionalidad.agregarNacionalidad(nacionalidad);
 			
+			nacionalidad = new Nacionalidad("Uruguay");
+			daoNacionalidad.agregarNacionalidad(nacionalidad);
+			
+			nacionalidad = new Nacionalidad("Brasil");
+			daoNacionalidad.agregarNacionalidad(nacionalidad);
+			
+			nacionalidad = new Nacionalidad("Paraguay");
+			daoNacionalidad.agregarNacionalidad(nacionalidad);
+			
+			nacionalidad = new Nacionalidad("Chile");
+			daoNacionalidad.agregarNacionalidad(nacionalidad);
+			
+			nacionalidad = new Nacionalidad("Peru");
+			daoNacionalidad.agregarNacionalidad(nacionalidad);
+			
+			nacionalidad = new Nacionalidad("Venezuela");
+			daoNacionalidad.agregarNacionalidad(nacionalidad);
+			
+			nacionalidad = new Nacionalidad("Colombia");
+			daoNacionalidad.agregarNacionalidad(nacionalidad);
+			
+			nacionalidad = new Nacionalidad("Ecuador");
+			daoNacionalidad.agregarNacionalidad(nacionalidad);
+			
+			nacionalidad = new Nacionalidad("Bolivia");
+			daoNacionalidad.agregarNacionalidad(nacionalidad);
+			
 		}
 		catch(Exception e) {
 			e.getCause();
