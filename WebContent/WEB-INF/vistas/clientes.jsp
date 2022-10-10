@@ -56,7 +56,7 @@
 						</div>
 					</div>
 				</form>
-				<div class="col-12">
+				<div class="table-responsive">
 					<table class="table table-bordered table-hover table-sm">
 						<tr>
 								<td>ID</td>
@@ -72,25 +72,26 @@
 								<td>Fecha de Nacimiento</td>
 								<td>Acciones</td>
 							</tr>
-							<c:forEach var="obj" items="${clientes}">
+							<c:forEach var="obj" items="${clientesList}">
 								<tr>
-									<td>${obj[0]}</td>
-									<td>${obj[1]}</td>
-									<td>${obj[2]}</td>
-									<td>${obj[3]}</td>
-									<td>${obj[4]}</td>
-									<td>${obj[5]}</td>
-									<td>${obj[6]}</td>
-									<td>${obj[7]}</td>
-									<td>${obj[8]}</td>
-									<td>${obj[9]}</td>
-									<td>${obj[10]}</td>
+								 <form action="modificarCliente.html" method="post">
+								 	
+									<td><input type="text"  name="id" value="${obj[0]}" readonly></td>
+									<td><input type="text" name="id" value="${obj[1]}" ></td>
+									<td><input type="text" name="id" value="${obj[2]}" ></td>
+									<td><input type="text" name="id" value="${obj[3]}" ></td>
+									<td><input type="text" name="id" value="${obj[4]}" ></td>
+									<td><input type="text" name="id" value="${obj[5]}" ></td>
+									<td><input type="text" name="id" value="${obj[6]}" ></td>
+									<td><input type="text" name="id" value="${obj[7]}" ></td>
+									<td><input type="text" name="id" value="${obj[8]}" ></td>
+									<td><input type="text" name="id" value="${obj[9]}" ></td>
+									<td><input type="text" name="id" value="${obj[10]}" ></td>
 									<td>
-										<form method="GET">                   
-											<input type="button" value="Eliminar" data-id-cliente="${obj[0]}" class="btn btn-danger eliminarCliente"></input>
-											<input type="button" value="Modificar"	onclick="location.href = 'paginaModificarCliente.html?id=${obj[0]}';"	class="btn btn-primary"></input>
-										</form>									
+																		
 	                              	</td>
+	                              	<td><input type="submit" value="Modificar"  class="btn btn-primary"></input></td>
+                              	</form>
 								</tr>
 							</c:forEach>
 						</table>
@@ -136,7 +137,7 @@
 					</div>
 					<div class="modal-body">
 						<div class=" form-group row">
-							<div class="col-lg-8 offset-2">�Esta Seguro que desea eliminar este cliente?</div>
+							<div class="col-lg-8 offset-2">Quiere confirmar esta operacion ? </div>
 						</div>
 					</div>
 					<div class="modal-footer">
@@ -173,8 +174,6 @@
 					    location.href = 'eliminarCliente.html?id=' + cliente;
 					    
 					});
-					
-
 				});
 			});					
 		</script>		

@@ -3,17 +3,35 @@ package web.serviceImpl;
 import java.text.SimpleDateFormat;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Service;
+
 import web.dao.DaoCliente;
 import web.model.Cliente;
+import web.model.Nacionalidad;
 import web.service.ClienteService;
 import web.service.FuncionesSeparadasService;
+import web.service.NacionalidadService;
 
+@Service("ClienteServiceImpl")
 public class ClienteServiceImpl implements ClienteService {
 
-	private DaoCliente daoCliente;
-	private Cliente cliente;
-	private FuncionesSeparadasService funciones;
 
+	@Autowired
+	private DaoCliente daoCliente;
+	
+	@Autowired
+	private Cliente cliente;
+	
+	@Autowired
+	private FuncionesSeparadasService funciones;
+	
+	@Autowired
+	@Qualifier("NacionalidadServiceImpl")
+	private NacionalidadService nacionalidadService;
+	
+	
 	@Override
 	public List<Cliente> listarClientes() {
 
@@ -27,6 +45,8 @@ public class ClienteServiceImpl implements ClienteService {
 		return daoCliente.listarClienteTabla(nacionalidad, nombre, apellido);
 	}
 
+	
+	
 	@Override
 	public boolean agregarCliente(String dni, String nombre, String apellido, String sexo, int nacionalidad,
 			String fechaNacimiento, String localidad, String direccion, String email, String telefono) {
@@ -38,9 +58,9 @@ public class ClienteServiceImpl implements ClienteService {
 			cliente.setDireccion(direccion);
 			cliente.setDni(dniInteger);
 			cliente.setEmail(email);
-			cliente.setFechaNacimiento(new SimpleDateFormat("yyyy-MM-dd").parse(fechaNacimiento));
+			cliente.setFechaNacimiento(fechaNacimiento);
 			cliente.setLocalidad(localidad);
-			cliente.setNacionalidad(funciones.obtenerNacionalidad(nacionalidad));
+			cliente.setNacionalidad(nacionalidadService.obtenerNacionalidad(nacionalidad));
 			cliente.setNombre(nombre);
 			cliente.setSexo(sexo);
 			cliente.setTelefono(telefono);
@@ -66,7 +86,7 @@ public class ClienteServiceImpl implements ClienteService {
 			cliente.setDireccion(direccion);
 			cliente.setDni(dni);
 			cliente.setEmail(email);
-			cliente.setFechaNacimiento(new SimpleDateFormat("yyyy-MM-dd").parse(fechaNacimiento));
+			cliente.setFechaNacimiento(fechaNacimiento);
 			cliente.setLocalidad(localidad);
 			cliente.setNombre(nombre);
 			cliente.setSexo(sexo);

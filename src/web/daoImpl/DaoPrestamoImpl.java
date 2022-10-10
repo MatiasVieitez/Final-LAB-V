@@ -3,10 +3,12 @@ package web.daoImpl;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 import web.dao.DaoPrestamo;
 import web.model.Prestamo;
 
+@Repository("DaoPrestamoImpl")
 public class DaoPrestamoImpl implements DaoPrestamo{
 
 	@Autowired

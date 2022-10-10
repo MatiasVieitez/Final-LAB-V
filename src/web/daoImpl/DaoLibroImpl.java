@@ -2,10 +2,13 @@ package web.daoImpl;
 
 import java.util.List;
 
+import org.springframework.stereotype.Repository;
+
 import web.dao.DaoLibro;
 import web.model.Libro;
 import web.model.Nacionalidad;
 
+@Repository("DaoLibroImpl")
 public class DaoLibroImpl implements DaoLibro{
 
 	private Conexion conexion;

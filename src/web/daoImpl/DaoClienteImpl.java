@@ -3,10 +3,12 @@ package web.daoImpl;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 import web.dao.DaoCliente;
 import web.model.Cliente;
 
+@Repository("DaoClienteImpl")
 public class DaoClienteImpl implements DaoCliente {
 
 	@Autowired
@@ -19,7 +21,7 @@ public class DaoClienteImpl implements DaoCliente {
 
 		@SuppressWarnings("unchecked")
 		List<Cliente> clients = (List<Cliente>) conexion.getSession()
-				.createQuery("FROM clientes a ORDER BY id_cliente asc").list();
+				.createQuery("FROM Cliente a ORDER BY id_cliente asc").list();
 
 		conexion.cerrarSession();
 
@@ -55,9 +57,9 @@ public class DaoClienteImpl implements DaoCliente {
 
 		conexion.abrirConexion();
 		List<Object[]> clientList = conexion.ObtenerListaPorQuery(
-				"SELECT c.id_cliente as idCliente, c.Dni as DNI, c.Nombre as Nombre, c.Apellido as Apellido, c.sexo as Sexo, n.descripcion as Nacionalidad, c.Email as Email, c.Direccion as Direccion, c.Localidad as Localidad, c.Telefono as Telefono, DATE_FORMAT(c.FechaNacimiento,'%d/%m/%Y') as 'Fecha Nacimiento'"
-						+ " FROM Cliente as c INNER JOIN Nacionalidad as n ON c.id_nacionalidad = n.id_nacionalidad"
-						+ query + " order by c.idCliente;");
+				"SELECT id_cliente as idCliente, c.Dni as DNI, c.Nombre as Nombre, c.Apellido as Apellido, c.sexo as Sexo, n.descripcion as Nacionalidad, c.Email as Email, c.Direccion as Direccion, c.Localidad as Localidad, c.Telefono as Telefono, c.fecha_nacimiento as 'Fecha Nacimiento'"
+						+ " FROM Clientes as c INNER JOIN Nacionalidad as n ON c.id_nacionalidad = n.id_nacionalidad"
+						+ query + " order by idCliente;");
 		conexion.cerrarSession();
 
 		return clientList;

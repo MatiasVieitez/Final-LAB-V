@@ -2,11 +2,14 @@ package web.daoImpl;
 
 import java.util.List;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 import web.dao.DaoBiblioteca;
 import web.model.Biblioteca;
 
+@Repository("DaoBibliotecaImpl")
 public class DaoBibliotecaImpl implements DaoBiblioteca {
 
 	@Autowired

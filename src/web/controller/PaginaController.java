@@ -1,5 +1,6 @@
 package web.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,12 +9,16 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
 
+import web.model.Cliente;
 import web.model.Nacionalidad;
 import web.model.UsuarioModel;
+import web.service.ClienteService;
+import web.service.NacionalidadService;
 import web.serviceImpl.FuncionesSeparadasServiceImpl;
 import web.serviceImpl.ScriptServiceImpl;
 import web.serviceImpl.UsuarioServiceImpl;
@@ -33,6 +38,15 @@ public class PaginaController {
 	@Autowired
 	@Qualifier("FuncionesService")
 	private FuncionesSeparadasServiceImpl funciones;
+	
+	
+	@Autowired
+	@Qualifier("NacionalidadServiceImpl")
+	private NacionalidadService nacionalidadService;
+	
+	@Autowired
+	@Qualifier("ClienteServiceImpl")
+	private ClienteService clienteService;
 	
 	@ModelAttribute("usuario")
 	public UsuarioModel getUsername() {
@@ -119,6 +133,7 @@ public class PaginaController {
 	public ModelAndView listadoClientes() {		
 		ModelAndView mv = new ModelAndView();
 		
+			mv.addObject("clientesList", clienteService.listarClienteTabla("","", ""));
 			mv.setViewName("clientes");
 
 		return mv;
@@ -129,21 +144,53 @@ public class PaginaController {
 		ModelAndView mv = new ModelAndView();
 		
 		try {
-			List<Nacionalidad> nacionalidades = funciones.ListarNacionalidades();
-			mv.addObject("nacionalidades",nacionalidades);
+			List<Nacionalidad> listNacionalidades = nacionalidadService.listarNacionalidades();
+			if (listNacionalidades.size() > 0)
+				mv.addObject("nacionalidadesList", listNacionalidades);
 			mv.setViewName("altaCliente");
 		}
 		catch(Exception e) {
 			e.getCause();
 		}
 			
+		
 
 		return mv;
 	}
 	
+	
+	@RequestMapping("viewEliminarCliente.html")
+	public ModelAndView eliminarCliente() {		
+		ModelAndView mv = new ModelAndView();
+		
+			mv.setViewName("viewEliminarCliente");
+
+		return mv;
+	}
+	
+	@RequestMapping("viewModificarCliente.html")
+	public ModelAndView PaginaModificarCliente(@RequestParam(value = "id", required = false) int id) {
+		ModelAndView mv = new ModelAndView();
+		
+		try {
+			Cliente cliente = clienteService.obtenerCliente(id);
+			List<Nacionalidad> nacionalidades = nacionalidadService.listarNacionalidades();
+			mv.addObject("nacionalidades",nacionalidades);
+			mv.addObject("cliente", cliente);
+			mv.setViewName("viewModificarCliente");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return mv;
+	}
+	
+	
+	
+	
 	// ----------------------------- FIN DISPATCHERS CLIENTE -------------------------------------------
 	
-	// ----------------------------- DISPATCHERS CLIENTE -------------------------------------------
+	// ----------------------------- DISPATCHERS Prestamos -------------------------------------------
 	
 		@RequestMapping("/prestamos.html")
 		public ModelAndView listadoPrestamos() {		
@@ -163,7 +210,7 @@ public class PaginaController {
 			return mv;
 		}
 		
-		// ----------------------------- FIN DISPATCHERS CLIENTE -------------------------------------------
+		// ----------------------------- FIN DISPATCHERS Prestamos -------------------------------------------
 	
 	
 }

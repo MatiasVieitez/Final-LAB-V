@@ -39,9 +39,9 @@
                             				</select></div>
                             <label for="nacionalidad" class="col-md-3 offset-4 col-form-label">Nacionalidad: </label>
                             <select required name="nacionalidad">                    			
-	                           <option>Argentina</option>
-	                           <option>Peru</option>
-	                           <option>Bolivia</option>
+	                           	<c:forEach items="${nacionalidadesList}" var="item">
+                        			<option value="${item.getId_nacionalidad()}">${item.getDescripcion()}</option>
+                   				 </c:forEach>
 							</select>
                             				                            			
                             <label for="fnacimiento" class="col-md-3 offset-4 col-form-label">Fecha de Nacimiento: </label>
