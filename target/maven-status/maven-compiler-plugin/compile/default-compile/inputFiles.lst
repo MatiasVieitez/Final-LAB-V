@@ -22,6 +22,8 @@ C:\Users\Matt\eclipse-workspace\TP_Integrador_grupo6\src\web\service\UsuarioServ
 C:\Users\Matt\eclipse-workspace\TP_Integrador_grupo6\src\web\model\Biblioteca.java
 C:\Users\Matt\eclipse-workspace\TP_Integrador_grupo6\src\web\principal\Main.java
 C:\Users\Matt\eclipse-workspace\TP_Integrador_grupo6\src\web\controller\ClienteController.java
+C:\Users\Matt\eclipse-workspace\TP_Integrador_grupo6\src\web\dao\DaoGenero.java
+C:\Users\Matt\eclipse-workspace\TP_Integrador_grupo6\src\web\daoImpl\DaoGeneroImpl.java
 C:\Users\Matt\eclipse-workspace\TP_Integrador_grupo6\src\web\daoImpl\Conexion.java
 C:\Users\Matt\eclipse-workspace\TP_Integrador_grupo6\src\web\daoImpl\DaoPrestamoImpl.java
 C:\Users\Matt\eclipse-workspace\TP_Integrador_grupo6\src\web\daoImpl\DaoLibroImpl.java
