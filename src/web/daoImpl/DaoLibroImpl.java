@@ -84,4 +84,40 @@ public class DaoLibroImpl implements DaoLibro{
 		return n;
 	}
 
+	@Override
+	public List<Object[]> listarLibroTabla(String autor, String titulo, String descripcion) {
+		String query = "";
+		int cantCondiciones = 0;
+
+		if (autor.length() > 0) {
+			query = " WHERE n.id_autor = '" + autor + "'";
+			cantCondiciones++;
+		}
+
+		if (titulo.length() > 0) {
+			if (cantCondiciones == 0) {
+				query = " WHERE c.titulo = '" + titulo + "'";
+				cantCondiciones++;
+			} else
+				query += " AND c.titulo = '" + titulo + "'";
+		}
+
+		if (descripcion.length() > 0) {
+			if (cantCondiciones == 0) {
+				query = " WHERE c.descripcion = '" + descripcion + "'";
+				cantCondiciones++;
+			} else
+				query += " AND c.descripcion = '" + descripcion + "'";
+		}
+
+		conexion.abrirConexion();
+		List<Object[]> libroList = conexion.ObtenerListaPorQuery(
+				"SELECT id_libro as idLibro, l.titulo as Titulo, l.fecha_lanzamiento as 'Fecha Nacimiento', l.idioma as Idioma, l.cant_paginas as CantPag, l.id_autor as id_autor"
+						+ " FROM Libro as l INNER JOIN Autor as a ON l.id_autor = a.id_autor"
+						+ query + " order by id_libro;");
+		conexion.cerrarSession();
+		
+		return libroList;
+	}
+
 }

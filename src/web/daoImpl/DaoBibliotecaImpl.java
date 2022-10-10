@@ -21,7 +21,7 @@ public class DaoBibliotecaImpl implements DaoBiblioteca {
 
 		@SuppressWarnings("unchecked")
 		List<Biblioteca> biblioteca = (List<Biblioteca>) conexion.getSession()
-				.createQuery("FROM Biblioteca a ORDER BY id_cliente asc").list();
+				.createQuery("FROM Biblioteca a ORDER BY id_biblioteca asc").list();
 
 		conexion.cerrarSession();
 
@@ -98,6 +98,38 @@ public class DaoBibliotecaImpl implements DaoBiblioteca {
 		}
 		conexion.cerrarSession();
 		return biblioteca;
+	}
+
+	@Override
+	public List<Object[]> listarBibliotecaTabla(String Libro, String estado) {
+		String query = "";
+		int cantCondiciones = 0;
+
+
+		if (Libro.length() > 0) {
+			if (cantCondiciones == 0) {
+				query = " WHERE b.id_libro = '" + Libro + "'";
+				cantCondiciones++;
+			} else
+				query += " AND b.id_libro = '" + Libro + "'";
+		}
+
+		if (estado.length() > 0) {
+			if (cantCondiciones == 0) {
+				query = " WHERE b.estado = '" + estado + "'";
+				cantCondiciones++;
+			} else
+				query += " AND b.estado = '" + estado + "'";
+		}
+
+		conexion.abrirConexion();
+		List<Object[]> biliotecaList = conexion.ObtenerListaPorQuery(
+				"SELECT id_biblioteca as idbiblioteca, b.id_libro as Libro, b.fecha_alta as 'Fecha Alta', b.estado as Estado "
+						+ " FROM Biblioteca as b INNER JOIN Libro as l ON b.id_libro = l.id_libro"
+						+ query + " order by id_biblioteca;");
+		conexion.cerrarSession();
+
+		return biliotecaList;
 	}
 
 }

@@ -14,9 +14,11 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
 
+import web.model.Biblioteca;
 import web.model.Cliente;
 import web.model.Nacionalidad;
 import web.model.UsuarioModel;
+import web.service.BibliotecaService;
 import web.service.ClienteService;
 import web.service.NacionalidadService;
 import web.serviceImpl.FuncionesSeparadasServiceImpl;
@@ -48,6 +50,10 @@ public class PaginaController {
 	@Qualifier("ClienteServiceImpl")
 	private ClienteService clienteService;
 	
+	@Autowired
+	@Qualifier("BibliotecaServiceImpl")
+	private BibliotecaService bibliotecaService;
+	
 	@ModelAttribute("usuario")
 	public UsuarioModel getUsername() {
 		return new UsuarioModel();
@@ -58,8 +64,8 @@ public class PaginaController {
 	@RequestMapping("index.html")
 	public String Login(SessionStatus status, ModelMap map, @ModelAttribute("usuario") UsuarioModel u,String username, String password) throws Exception	{	
 		scriptServiceImpl.script();
-		String redirect = "";
-		try {
+		String redirect = "redirect:/biblioteca.html";
+		/*try {
 			
 			UsuarioModel usuario = userServiceImpl.usuarioCredenciales(username, password);
 		
@@ -74,7 +80,7 @@ public class PaginaController {
 			e.getCause();
 			e.printStackTrace();
 			redirect = "redirect:/loginFailed.html";	
-		}
+		}*/
 		return redirect;
 	}
 	
@@ -102,13 +108,14 @@ public class PaginaController {
 	public ModelAndView ListadoBiblioteca() {		
 		ModelAndView mv = new ModelAndView();
 		
-//		try {
-			//mv.addObject("bibliotecas",iNegBiblioteca.listarBibliotecasTabla("","","",""));
+	try {
+			List<Biblioteca> listBiblioteca = bibliotecaService.listarBibliotecas();
+			mv.addObject("bibliotecas",listBiblioteca);
 			mv.setViewName("biblioteca");
-//		} catch (Exception e) {
-//			mv = AvisoController.SeteoDeAviso(mv, "Listado Biblioteca", "Carga de Listado Biblioteca", e.toString(), 
-//					"Volver al Login", "cerrarSesion.html", AvisoController.TipoAviso.Error);
-//		}
+	} catch (Exception e) {
+		e.getCause();
+			e.printStackTrace();
+		}
 
 		return mv;
 	}

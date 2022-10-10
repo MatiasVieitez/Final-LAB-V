@@ -7,9 +7,9 @@ import web.model.Biblioteca;
 public interface BibliotecaService {
 	
 	public List<Biblioteca> listarBibliotecas();
+	public List<Object[]> listarBibliotecaTabla( String libro, String estado);
 	public boolean agregarBiblioteca(String libro, String fechaAlta, String estado);
 	public boolean modificarBiblioteca(int id, String libro, String fechaAlta, String estado);
 	public boolean eliminarBiblioteca(Biblioteca biblioteca);
 	public Biblioteca obtenerBiblioteca(int id);
-	//public List<Object[]> listarClienteTabla(String nacionalidad, String nombre, String apellido);
 }
