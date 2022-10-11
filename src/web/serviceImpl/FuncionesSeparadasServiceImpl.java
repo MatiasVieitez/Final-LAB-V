@@ -2,7 +2,6 @@ package web.serviceImpl;
 
 import java.util.ArrayList;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import web.dao.DaoNacionalidad;
@@ -18,13 +17,9 @@ import web.service.FuncionesSeparadasService;
 @Service("FuncionesService")
 public class FuncionesSeparadasServiceImpl implements FuncionesSeparadasService {
 	
-    @Autowired
 	private DaoNacionalidad daoNacionalidad;
-    @Autowired
 	private DaoLibro daoLibro;
-    @Autowired
 	private DaoBiblioteca daoBiblioteca;
-    @Autowired
 	private DaoCliente daoCliente;
 	
 	@Override

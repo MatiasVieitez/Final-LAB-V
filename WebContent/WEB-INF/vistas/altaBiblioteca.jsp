@@ -35,22 +35,23 @@
 					
 					<div class=" form-group row">
 					
-						<label for="esta" class="col-sm-2 col-form-label">Estado:</label>
+						<label for="cliente" class="col-sm-2 col-form-label">Biblioteca:</label>
 						<div class="col-sm-7">
-							<select name="esta" id="esta">
-								<option value=""disabled="disabled">Seleccione un estado</option>
-								<option value="Biblioteca">Biblioteca</option>
-								<option value="Prestado">Prestado</option>
+							<select name="cliente" id="cliente">
+								<option value="">Diamante</option>
+								<option value="Disponible">Oro</option>
+								<option value="Prestado">Plata</option>
+								<option value="Prestado">Bronce</option>
 							</select>
 						</div>
 						
 					</div>
 					
 					<div class=" form-group row">
-						<label for="libro" class="col-sm-2 col-form-label">Libro :</label>
+						<label for="libros" class="col-sm-2 col-form-label">Libro :</label>
 							<div class="col-sm-7">
-								<select name="libro" id="libro">
-									<c:forEach items="${listLibro}" var="item">
+								<select name="libros" id="libros">
+									<c:forEach items="${libroList}" var="item">
                         			<option value="${item.getId()}">${item.getTitulo()}</option>
                    				 </c:forEach>
 							</select>

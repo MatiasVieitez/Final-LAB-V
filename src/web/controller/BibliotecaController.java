@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import web.model.Biblioteca;
-import web.model.Cliente;
 import web.model.Libro;
 import web.service.BibliotecaService;
 import web.service.LibroService;
@@ -28,15 +27,21 @@ public class BibliotecaController {
 	private LibroService libroService;
 	
 	@RequestMapping("addBiblioteca.html")
-	public String agregarBiblioteca(String libro, String fechaAlta, String esta) {
+	public String agregarBiblioteca(String id, String libro, String fechaAlta, String esta) {
 		 ModelAndView mv = new ModelAndView();
+		 
+		 if(esta.equals("1")) {
+			 esta = "Biblioteca";
+		 }else{
+			 esta = "Prestado";
+		 }
 		 
 		try {
 			boolean estado = bibliotecaService.agregarBiblioteca( libro, fechaAlta, esta);
 			
 			if(estado) {
 				mv.addObject("msg","Biblioteca agregada con exito");
-				return "redirect:/biblioteca.html";
+				return "redirect:/Biblioteca.html";
 			}
 				
 		
@@ -107,10 +112,13 @@ public class BibliotecaController {
 		}
 		
 		List<Biblioteca> list = bibliotecaService.listarBibliotecas();
-        if (list.size() > 0)
-            mv.addObject("BibliotecasList", list);
+		if (list.size() > 0)
+			mv.addObject("bibliotecaList", list);
 		
-		//Revisar-------------------------
+		List<Libro> listLibro = libroService.listarLibros();
+		if (listLibro.size() > 0)
+			mv.addObject("libroList", listLibro);
+		//REvisar-------------------------
 		return "bibliotecas";
 	}
 	
