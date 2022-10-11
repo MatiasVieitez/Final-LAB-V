@@ -94,18 +94,6 @@
 											value="Modificar"
 											onclick="location.href = 'paginaModificarBiblioteca.html?id=${obj.getId()}';"
 											class="btn btn-primary"></input>
-										<c:choose>
-											<c:when test="${obj.getEstado() == 'Prestado'}">
-												<input type="button" value="Info. Prestamo"
-													onclick="location.href = 'listadoPrestamos.html?isbn=${obj.getLibro().getTitulo()}';"
-													class="btn btn-primary"></input>
-											</c:when>
-											<c:otherwise>
-												<input type="button" value="Nuevo Prestamo"
-													onclick="location.href = 'obtenerBibliotecaDesdeLista.html?idBiblioteca=${obj.getId()}';"
-													class="btn btn-primary"></input>
-											</c:otherwise>
-										</c:choose>
 									</form>
 								</td>
 							</tr>
