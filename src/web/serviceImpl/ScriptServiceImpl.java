@@ -6,8 +6,10 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import web.dao.DaoGenero;
 import web.dao.DaoNacionalidad;
 import web.dao.DaoUsuario;
+import web.model.Genero;
 import web.model.Nacionalidad;
 import web.model.UsuarioModel;
 import web.service.NacionalidadService;
@@ -25,10 +27,16 @@ public class ScriptServiceImpl {
 	Nacionalidad nacionalidad;
 	
 	@Autowired
+    Genero genero;
+	
+	@Autowired
 	NacionalidadServiceImpl nacionalidadService;
 	
 	@Autowired
 	DaoNacionalidad daoNacionalidad;
+	
+	@Autowired
+    DaoGenero daoGenero;
 	
 	//private boolean existingData = false;
 	
@@ -43,6 +51,7 @@ public class ScriptServiceImpl {
 		
 		//cargarUsuarios();
 		//GenerarNacionalidades();
+	    //GenerarGeneros();
 		
 	}
 	
@@ -92,5 +101,36 @@ public class ScriptServiceImpl {
 		}
 		
 		
+	}
+	
+	private void GenerarGeneros() {
+	    
+	    genero = new Genero("Ciencia ficcion");
+	    daoGenero.agregarGenero(genero);
+	    
+	    genero = new Genero("Fantasia");
+        daoGenero.agregarGenero(genero);
+        
+        genero = new Genero("Romantico");
+        daoGenero.agregarGenero(genero);
+        
+        genero = new Genero("Accion");
+        daoGenero.agregarGenero(genero);
+        
+        genero = new Genero("Terror");
+        daoGenero.agregarGenero(genero);
+        
+        genero = new Genero("Drama");
+        daoGenero.agregarGenero(genero);
+        
+        genero = new Genero("Accion");
+        daoGenero.agregarGenero(genero);
+        
+        genero = new Genero("Infantil");
+        daoGenero.agregarGenero(genero);
+        
+        genero = new Genero("Aventura");
+        daoGenero.agregarGenero(genero);
+	    
 	}
 }

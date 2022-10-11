@@ -22,12 +22,13 @@ public class Genero {
 	@Column(name="descripcion")
 	private String Descripcion;
 	
-	/*public Genero(int id, String descripcion) {
-		super();
-		this.id = id;
-		Descripcion = descripcion;
-	}*/
-
+	public Genero() {  
+    }
+	
+	public Genero(String desc) {
+        Descripcion = desc;
+    }
+	
 	public int getId() {
 		return id;
 	}
