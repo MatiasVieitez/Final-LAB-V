@@ -24,7 +24,7 @@ public class Biblioteca {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
-	@ManyToOne(cascade = {CascadeType.ALL})
+	@ManyToOne(cascade = {CascadeType.PERSIST})
 	@JoinColumn(name = ("id_libro"))
 	private Libro libro;
 	

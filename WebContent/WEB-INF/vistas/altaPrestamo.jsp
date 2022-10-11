@@ -30,17 +30,16 @@
 					<input type="button" value="Volver" onclick="location.href = 'prestamos.html';" class="btn btn-success"></input>
 				</div>
 				<br>
-				<form class="col-12" action="listarClienteFiltro.html"	method="Get">
+				<form class="col-12" action="addPrestamo.html"	method="post">
 					<h3>Cliente</h3>
 					<div class=" form-group row">
 					
 						<label for="cliente" class="col-sm-2 col-form-label">Cliente:</label>
 						<div class="col-sm-7">
-							<select name="cliente" id="cliente">
-								<option value="">Seleccione un cliente</option>
-								<option value="Disponible">Adriel Lopez</option>
-								<option value="Prestado">Vanesa Alegre</option>
-								<option value="Prestado">Federico Aldaz</option>
+							<select name="Cliente" id="cliente">
+								<c:forEach items="${clientesList}" var="item">
+                        			<option value="${item.getId()}"> Apellido : ${item.getApellido()} Dni : ${item.getDni()} </option>
+                   				 </c:forEach>
 							</select>
 						</div>
 						
@@ -49,11 +48,12 @@
 					<div class=" form-group row">
 						<label for="libros" class="col-sm-2 col-form-label">Libro :</label>
 							<div class="col-sm-7">
-								<select name="libros" id="libros">
-									<c:forEach items="${listLibro}" var="item">
-                        			<option value="${item.getId()}">${item.getTitulo()}</option>
+								<select name="Biblioteca" id="libros">
+									<c:forEach items="${bibliotecaList}" var="item">
+                        			<option value="${item.getId()}"> Nombre :  ${item.getLibro().getTitulo()} Autor: ${item.getLibro().getAutor().getApellido()} </option>
                    				 </c:forEach>
 							</select>
+							
 							</div>	
 					</div>
 					
@@ -71,13 +71,13 @@
 						<label for="cantDias" class="col-sm-2 col-form-label">Cantidad de Dias</label>
 							<div class="col-sm-7">
 								<input class="form-control" min="1" type="number" id="cantDias"
-									name="cantDias">
+									name="CantDias">
 							</div>
 					</div>
 					
 					<div class="form-group row">
 						<div class="col-sm-7">
-							<input class="col-sm-2 col-form-label" type="submit" value="Crear">
+							<input class="col-sm-2 col-form-label" type="submit" value="Alta prestamo">
 						</div>
 					</div>
 				</form>

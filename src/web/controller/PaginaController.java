@@ -18,11 +18,13 @@ import web.model.Biblioteca;
 import web.model.Cliente;
 import web.model.Libro;
 import web.model.Nacionalidad;
+import web.model.Prestamo;
 import web.model.UsuarioModel;
 import web.service.BibliotecaService;
 import web.service.ClienteService;
 import web.service.LibroService;
 import web.service.NacionalidadService;
+import web.service.PrestamoService;
 import web.serviceImpl.FuncionesSeparadasServiceImpl;
 import web.serviceImpl.ScriptServiceImpl;
 import web.serviceImpl.UsuarioServiceImpl;
@@ -59,6 +61,10 @@ public class PaginaController {
     @Qualifier("LibroServiceImpl")
     private LibroService libroService;
 	
+	@Autowired
+    @Qualifier("PrestamoServiceImpl")
+    private PrestamoService prestamoService;
+	
 	@ModelAttribute("usuario")
 	public UsuarioModel getUsername() {
 		return new UsuarioModel();
@@ -69,8 +75,8 @@ public class PaginaController {
 	@RequestMapping("index.html")
 	public String Login(SessionStatus status, ModelMap map, @ModelAttribute("usuario") UsuarioModel u,String username, String password) throws Exception	{	
 		scriptServiceImpl.script();
-		String redirect = "redirect:/biblioteca.html";
-		/*try {
+		String redirect = "";
+		try {
 			
 			UsuarioModel usuario = userServiceImpl.usuarioCredenciales(username, password);
 		
@@ -85,7 +91,7 @@ public class PaginaController {
 			e.getCause();
 			e.printStackTrace();
 			redirect = "redirect:/loginFailed.html";	
-		}*/
+		}
 		return redirect;
 	}
 	
@@ -198,7 +204,9 @@ public class PaginaController {
 		@RequestMapping("/prestamos.html")
 		public ModelAndView listadoPrestamos() {		
 			ModelAndView mv = new ModelAndView();
-			
+			 List<Prestamo> listPrestamo = prestamoService.listarPrestamos();
+             if(listPrestamo.size() > 0)
+                 mv.addObject("prestamos",listPrestamo);
 				mv.setViewName("prestamos");
 
 			return mv;
@@ -209,9 +217,13 @@ public class PaginaController {
 		    ModelAndView mv = new ModelAndView();
 	        
 	        try {
-	            List<Libro> listLibro = libroService.listarLibros();
-	            if (listLibro.size() > 0)
-	                mv.addObject("listLibro", listLibro);
+	            List<Biblioteca> list1 = bibliotecaService.listarBibliotecasEstado();
+                if(list1.size() > 0)
+                    mv.addObject("bibliotecaList",list1);
+	            List<Cliente> list2 = clienteService.listarClientes();
+	            if(list2.size() > 0)
+	                mv.addObject("clientesList",list2);
+	            
 	            mv.setViewName("altaPrestamo");
 	        }
 	        catch(Exception e) {

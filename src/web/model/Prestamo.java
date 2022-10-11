@@ -24,24 +24,24 @@ public class Prestamo {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
-	@ManyToOne(cascade = {CascadeType.ALL})
+	@ManyToOne(cascade = {CascadeType.PERSIST})
 	@JoinColumn(name = ("id_biblioteca"))
 	private Biblioteca biblioteca;
 	
 	@Column(name="fecha_prestamo")
-	private Date fechaPrestamo;
+	private String fechaPrestamo;
 	
 	@Column(name="cant_dias")
 	private int CantDias;
 	
-	@ManyToOne(cascade = {CascadeType.ALL})
+	@ManyToOne(cascade = {CascadeType.PERSIST})
 	@JoinColumn(name = ("id_cliente"))
 	private Cliente cliente;
 	
 	public Prestamo() {
 	}
 	
-	public Prestamo(int id, Biblioteca biblioteca, Date fechaPrestamo, int cantDias, Cliente cliente) {
+	public Prestamo(int id, Biblioteca biblioteca, String fechaPrestamo, int cantDias, Cliente cliente) {
 		super();
 		this.id = id;
 		this.biblioteca = biblioteca;
@@ -66,12 +66,12 @@ public class Prestamo {
 		this.biblioteca = biblioteca;
 	}
 
-	public Date getFechaPrestamo() {
+	public String getFechaPrestamo() {
 		return fechaPrestamo;
 	}
 
-	public void setFechaPrestamo(Date fechaPrestamo) {
-		this.fechaPrestamo = fechaPrestamo;
+	public void setFechaPrestamo(String fecha) {
+		this.fechaPrestamo = fecha;
 	}
 
 	public int getCantDias() {
@@ -89,15 +89,5 @@ public class Prestamo {
 	public void setCliente(Cliente cliente) {
 		this.cliente = cliente;
 	}
-
-	public Date getFechaNPrestamo() {
-		return fechaPrestamo;
-	}
-	
-	public void setFechaPrestamo(java.util.Date date) {
-		this.fechaPrestamo = (Date) date;
 		
-	}
-	
-	
 }

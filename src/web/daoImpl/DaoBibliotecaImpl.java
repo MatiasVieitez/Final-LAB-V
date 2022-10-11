@@ -27,6 +27,20 @@ public class DaoBibliotecaImpl implements DaoBiblioteca {
 
 		return biblioteca;
 	}
+	
+	@Override
+    public List<Biblioteca> listarBibliotecasEstado() {
+        conexion.abrirConexion();
+
+        @SuppressWarnings("unchecked")
+        List<Biblioteca> biblioteca = (List<Biblioteca>) conexion.getSession()
+                .createQuery("FROM Biblioteca where estado = 'En Biblioteca'").list();
+
+        conexion.cerrarSession();
+
+        return biblioteca;
+    }
+
 
 	@Override
 	public boolean agregarBiblioteca(Biblioteca biblioteca) {
@@ -87,7 +101,7 @@ public class DaoBibliotecaImpl implements DaoBiblioteca {
 	public Biblioteca obtenerBibliotecaByID(int idBiblioteca) {
 		conexion.abrirConexion();
 		
-		Biblioteca biblioteca;
+		Biblioteca biblioteca = new Biblioteca();
 		
 		try {
 			biblioteca = (Biblioteca)conexion.ObtenerObjeto(Biblioteca.class, idBiblioteca);

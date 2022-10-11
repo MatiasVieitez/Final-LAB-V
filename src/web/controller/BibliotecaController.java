@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import web.model.Biblioteca;
+import web.model.Cliente;
 import web.model.Libro;
 import web.service.BibliotecaService;
 import web.service.LibroService;
@@ -26,22 +27,21 @@ public class BibliotecaController {
 	@Qualifier("LibroServiceImpl")
 	private LibroService libroService;
 	
+	@ModelAttribute("biblioteca")
+    public Biblioteca getBiblioteca() {
+        return new Biblioteca();
+    }
+	
 	@RequestMapping("addBiblioteca.html")
-	public String agregarBiblioteca(String id, String libro, String fechaAlta, String esta) {
+	public String agregarBiblioteca(String libro, String fechaAlta, String esta) {
 		 ModelAndView mv = new ModelAndView();
-		 
-		 if(esta.equals("1")) {
-			 esta = "Biblioteca";
-		 }else{
-			 esta = "Prestado";
-		 }
 		 
 		try {
 			boolean estado = bibliotecaService.agregarBiblioteca( libro, fechaAlta, esta);
 			
 			if(estado) {
 				mv.addObject("msg","Biblioteca agregada con exito");
-				return "redirect:/Biblioteca.html";
+				return "redirect:/biblioteca.html";
 			}
 				
 		
@@ -70,57 +70,47 @@ public class BibliotecaController {
 	}
 	
 	@RequestMapping("eliminarBiblioteca.html")
-	public ModelAndView eliminarBiblioteca(@RequestParam(value = "id", required = false) int idBiblioteca){
+	public String eliminarBiblioteca(@RequestParam(value = "id", required = false) int idBiblioteca){
 		ModelAndView mv = new ModelAndView();
 		
 		try {
 			Biblioteca biblioteca = bibliotecaService.obtenerBiblioteca(idBiblioteca);
 			
-			if(bibliotecaService.eliminarBiblioteca(biblioteca)) {
-				mv.addObject("msg","biblioteca eliminado con exito");
-				mv.setViewName("eliminarBiblioteca");
-			}
-				
-			  	
-			else
-				mv.addObject("msg","La biblioteca no se pudo eliminar");
+			bibliotecaService.eliminarBiblioteca(biblioteca);			
+			mv.addObject("msg","biblioteca eliminado con exito");
+			return "redirect:/biblioteca.html";
+				  			
 		}
 		catch(Exception e) {
 			mv.addObject("msg","exception");
+			return "exception";
 		}
 		
-		return mv;
 	}
 	
 	@RequestMapping("modificarBiblioteca.html")
-	public String modificarBiblioteca(@ModelAttribute("biblioteca") Biblioteca biblioteca, String id, String libro, String fechaAlta, String esta) {
-		
-		ModelAndView mv = new ModelAndView();
-		
-		try {
-			// Revisar-------------------------------
-			boolean estado = bibliotecaService.modificarBiblioteca(Integer.parseInt(id), libro, fechaAlta, esta);
-			if(estado) {
+    public String modificarBiblioteca(@ModelAttribute("biblioteca") Biblioteca biblioteca, int id, String esta, String fechaAlta) {
+        ModelAndView mv = new ModelAndView();
 
-				mv.addObject("msg","Biblioteca actualizada con exito");
-				
-			} 
-			else
-				mv.addObject("msg","a ocurrido un error");
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		
-		List<Biblioteca> list = bibliotecaService.listarBibliotecas();
-		if (list.size() > 0)
-			mv.addObject("bibliotecaList", list);
-		
-		List<Libro> listLibro = libroService.listarLibros();
-		if (listLibro.size() > 0)
-			mv.addObject("libroList", listLibro);
-		//REvisar-------------------------
-		return "bibliotecas";
-	}
+        try {
+            boolean est = bibliotecaService.modificarBiblioteca(id, fechaAlta, esta);
+            if(est) {
+                mv.addObject("msg","biblioteca actualizada con exito");
+                return "redirect:/biblioteca.html";
+            }
+               
+            else {
+                mv.addObject("msg","ocurrio un error");
+                return "algo salio mal";
+            }
+                
+            
+        }catch(Exception e) {
+            e.printStackTrace();
+            return "exception";
+        }
+
+    }
 	
 	
 }

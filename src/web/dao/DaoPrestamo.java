@@ -11,5 +11,6 @@ public interface DaoPrestamo {
 		public boolean modificarPrestamo(Prestamo prestamo);
 		public Prestamo obtenerPrestamoByID(int idPrestamo);
 		//public List<Object[]> listarPrestamo(String nacionalidad, String nombre, String apellido);
+        boolean eliminarPrestamo(Prestamo p);
 	
 }

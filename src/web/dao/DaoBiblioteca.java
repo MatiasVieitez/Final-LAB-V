@@ -12,4 +12,5 @@ public interface DaoBiblioteca {
 	public boolean modificarBiblioteca(Biblioteca biblioteca);
 	public boolean eliminarBiblioteca(Biblioteca biblioteca);
 	public Biblioteca obtenerBibliotecaByID(int idBiblioteca);
+    List<Biblioteca> listarBibliotecasEstado();
 }

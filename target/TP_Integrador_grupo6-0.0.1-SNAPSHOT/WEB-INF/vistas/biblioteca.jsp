@@ -30,48 +30,10 @@
 					<input type="button" value="Agregar Biblioteca" onclick="location.href = 'altaBiblioteca.html';"	class="btn btn-primary"></input>
 				</div>
 				<br>
-				<form class="col-12" action="listarBibliotecaFiltro.html"	method="Get">
-					<h3>Filtrar por:</h3>
-					<div class=" form-group row">
-						<label for="isbn" class="col-sm-2 col-form-label">ID:</label>
-						<div class="col-sm-7">
-							<input class="form-control" min="1" type="number" id="isbn"
-								name="isbn">
-						</div>
-					</div>
-					<div class="form-group row">
-						<label for="titulo" class="col-sm-2 col-form-label">Titulo:</label>
-						<div class="col-sm-7">
-							<input type="text" class="form-control" id="titulo" name="titulo"
-								placeholder="Ingrese un titulo">
-						</div>
-					</div>
-					<div class="form-group row">
-						<label for="estado" class="col-sm-2 col-form-label">Estado:</label>
-						<div class="col-sm-7">
-							<select name="estado" id="estado">
-								<option value="">Todos</option>
-								<option value="Disponible">Disponible</option>
-								<option value="Prestado">Prestado</option>
-							</select>
-						</div>
-					</div>
-					<div class="form-group row">
-						<label for="fechaAlta" class="col-sm-2 col-form-label">Fecha
-							de Alta:</label>
-						<div class="col-sm-7">
-							<input type="date" class="form-control" id="fechaAlta"
-								name="fechaAlta">
-						</div>
-					</div>
-					<div class="form-group row">
-						<div class="col-sm-7">
-							<input class="col-sm-2 col-form-label" type="submit" value="Buscar">
-						</div>
-					</div>
-				</form>
+				
 				<div class="col-12">
 					<table class="table table-bordered table-hover">
+					<thead>
 						<tr>
 							<th scope="col">Biblioteca</th>
 							<th scope="col">Titulo</th>
@@ -79,37 +41,30 @@
 							<th scope="col">Estado</th>
 							<th scope="col">Acciones</th>
 						</tr>
+						<thead>
 						<c:forEach var="obj" items="${bibliotecas}">
+						<tbody id="myTable">
 							<tr>
-								<td>${obj.getId()}</td>
-								<td>${obj.getLibro().getTitulo()}</td>
-								<td>${obj.getFechaAlta()}</td>
-								<td>${obj.getEstado()}</td>
-								<td>
-									<form method="GET">
-										<input type="button" value="Eliminar"
-											data-id-biblioteca="${obj.getId()}"											
-											class="btn btn-danger eliminarbiblioteca"></input> 
-											<input type="button"
-											value="Modificar"
-											onclick="location.href = 'paginaModificarBiblioteca.html?id=${obj.getId()}';"
-											class="btn btn-primary"></input>
-										<c:choose>
-											<c:when test="${obj.getEstado() == 'Prestado'}">
-												<input type="button" value="Info. Prestamo"
-													onclick="location.href = 'listadoPrestamos.html?isbn=${obj.getLibro().getTitulo()}';"
-													class="btn btn-primary"></input>
-											</c:when>
-											<c:otherwise>
-												<input type="button" value="Nuevo Prestamo"
-													onclick="location.href = 'obtenerBibliotecaDesdeLista.html?idBiblioteca=${obj.getId()}';"
-													class="btn btn-primary"></input>
-											</c:otherwise>
-										</c:choose>
-									</form>
-								</td>
-							</tr>
+								<form action="modificarBiblioteca.html" method="post">
+								 	
+									<td>${obj.getId()} <input  type="text" hidden name="id" value="${obj.getId()}" > </td>
+									
+									<td>${obj.getLibro().getTitulo()}<input  type="text" hidden name="" value="${obj.getLibro().getId()}" > </td>
+									
+									<td><input  type="text" name="fechaAlta" value="${obj.getFechaAlta()}" ></td>
+									
+									<td>${obj.getEstado()}<input  type="text" hidden name="esta" value="${obj.getEstado()}" > </td>
+									
+									<td><input type="button" value="Eliminar" data-id-biblioteca="${obj.getId()}" class="btn btn-danger eliminarbiblioteca"></input></td>					
+	                              	
+	                              	<td><input type="submit" value="Modificar"  class="btn btn-primary"></input></td>
+	                              	
+                              	</form>
+																							
+      					</tr>
+      					</tbody>
 						</c:forEach>
+						
 					</table>
 				</div>
 			</div>

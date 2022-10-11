@@ -2,6 +2,7 @@ package web.daoImpl;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import web.dao.DaoLibro;
@@ -11,6 +12,7 @@ import web.model.Nacionalidad;
 @Repository("DaoLibroImpl")
 public class DaoLibroImpl implements DaoLibro{
 
+    @Autowired
 	private Conexion conexion;
 	
 	@Override

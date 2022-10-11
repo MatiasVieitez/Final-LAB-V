@@ -32,7 +32,7 @@ public final class Autor {
 	@Column(name="apellido")
 	private String Apellido;
 	
-	@ManyToOne(cascade = {CascadeType.ALL})
+	@ManyToOne(cascade = {CascadeType.PERSIST})
 	@JoinColumn(name = ("id_nacionalidad"))
 	private Nacionalidad nacionalidad;
 	

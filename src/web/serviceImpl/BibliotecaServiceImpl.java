@@ -30,6 +30,12 @@ public class BibliotecaServiceImpl implements BibliotecaService{
 	}
 	
 	@Override
+    public List<Biblioteca> listarBibliotecasEstado() {
+        List<Biblioteca> biblioteca = daoBiblioteca.listarBibliotecasEstado();
+        return biblioteca;
+    }
+	
+	@Override
 	public boolean agregarBiblioteca(String libro, String fechaAlta, String estado) {
 		try {
 
@@ -49,13 +55,11 @@ public class BibliotecaServiceImpl implements BibliotecaService{
 	}
 	
 	@Override
-	public boolean modificarBiblioteca(int id, String libro, String fechaAlta, String estado) {
+	public boolean modificarBiblioteca(int id, String fechaAlta, String estado) {
 		try {
 			Biblioteca biblioteca = daoBiblioteca.obtenerBibliotecaByID(id);
-			int libroInteger = Integer.parseInt(libro);
-			
+				
 			biblioteca.setId(id);
-			biblioteca.setLibro(funciones.obtenerLibro(libroInteger));
 			biblioteca.setFechaAlta((fechaAlta));
 			biblioteca.setEstado(estado);
 	
@@ -67,6 +71,10 @@ public class BibliotecaServiceImpl implements BibliotecaService{
 			}
 	}
 
+	@Override
+    public boolean modificarBiblioteca(Biblioteca b) {
+        return daoBiblioteca.modificarBiblioteca(b);
+    }
 	
 	@Override
 	public boolean eliminarBiblioteca(Biblioteca biblioteca) {
